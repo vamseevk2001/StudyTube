@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="skills">
+        <item>java</item>
+        <item>JavaScript</item>
+        <item>Firebase</item>
+        <item>web Development</item>
+        <item>Android development</item>
+        <item>Data Structures</item>
+        <item>python</item>
+        <item>Github</item>
+        <item>Flutter</item>
+        <item>C++</item>
+        <item>C</item>
+        <item>Artificial Intelligence</item>
+        <item>Machine Learning</item>
+        <item>Blockchain</item>
+        <item>Game Development</item>
+    </string-array>
+</resources>

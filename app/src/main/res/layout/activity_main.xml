@@ -7,17 +7,16 @@
     android:background="@drawable/gradient"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/app_logo"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="200dp"
         android:src="@drawable/hat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/app_name"
@@ -40,6 +39,7 @@
         android:layout_width="match_parent"
         android:padding="10dp"
         android:layout_height="wrap_content"
+        android:onClick="signin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
