@@ -25,6 +25,8 @@ class Explore : AppCompatActivity() {
         mSkills.add(Skills("Blockchain", ""))
         mSkills.add(Skills("C++", ""))
         mSkills.add(Skills("python", ""))
+        mSkills.add(Skills("C", ""))
+        mSkills.add(Skills("Javascript", ""))
 
         mAdapter = SkillsAdapter()
         mAdapter.updateSkills(mSkills)
