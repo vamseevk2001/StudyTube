@@ -1,4 +1,4 @@
-package vamsee.application.studytube
+package vamsee.application.studytube.Models
 
 data class Skills(
     val name: String,

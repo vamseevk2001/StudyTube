@@ -1,15 +1,13 @@
 package vamsee.application.studytube.Adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import vamsee.application.studytube.R
-import vamsee.application.studytube.Skills
+import vamsee.application.studytube.Models.Skills
 
 class SkillsAdapter: RecyclerView.Adapter<SkillViewHolder>() {
 

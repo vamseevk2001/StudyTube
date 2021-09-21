@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Wishlist">
+    tools:context=".SkillDescription">
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,7 +23,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="monospace"
         android:padding="5dp"
-        android:text="Watch List"
+        android:text="Android Development"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/watchlist"
+        android:id="@+id/playlist"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"

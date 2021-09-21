@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vamsee.application.studytube.Adapter.SkillsAdapter
+import vamsee.application.studytube.Models.Skills
 
 class Explore : AppCompatActivity() {
 
