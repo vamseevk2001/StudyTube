@@ -24,7 +24,7 @@ class SkillsAdapter: RecyclerView.Adapter<SkillViewHolder>() {
     override fun onBindViewHolder(holder: SkillViewHolder, position: Int) {
         val currentItem = items[position]
         holder.skill_name.text = currentItem.name
-        holder.skill_icon.setImageResource(R.drawable.hat)
+        holder.skill_icon.setImageResource(currentItem.img)
     }
 
     override fun getItemCount(): Int {

@@ -2,8 +2,6 @@ package vamsee.application.studytube
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Adapter
-import android.widget.GridLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vamsee.application.studytube.Adapter.SkillsAdapter
@@ -19,14 +17,14 @@ class Explore : AppCompatActivity() {
         setContentView(R.layout.activity_explore)
         val recyclerView: RecyclerView = findViewById(R.id.skills_recyclerView)
 
-        mSkills.add(Skills("java", ""))
-        mSkills.add(Skills("Android", ""))
-        mSkills.add(Skills("Web", ""))
-        mSkills.add(Skills("Blockchain", ""))
-        mSkills.add(Skills("C++", ""))
-        mSkills.add(Skills("python", ""))
-        mSkills.add(Skills("C", ""))
-        mSkills.add(Skills("Javascript", ""))
+        mSkills.add(Skills("java", R.drawable.java))
+        mSkills.add(Skills("Android", R.drawable.android))
+        mSkills.add(Skills("Web", R.drawable.web))
+        mSkills.add(Skills("Blockchain", R.drawable.blockchain))
+        mSkills.add(Skills("C++", R.drawable.cpp))
+        mSkills.add(Skills("python", R.drawable.python))
+        mSkills.add(Skills("C", R.drawable.c))
+        mSkills.add(Skills("Javascript", R.drawable.javascript))
 
         mAdapter = SkillsAdapter()
         mAdapter.updateSkills(mSkills)

@@ -10,6 +10,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
         android:layout_margin="5dp"
         app:cardBackgroundColor="@color/ghotst_white"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +25,7 @@
             android:id="@+id/skill_icon"
             android:layout_width="180dp"
             android:layout_height="160dp"
+            android:padding="20dp"
             android:src="@drawable/hat"/>
 
         <TextView

@@ -2,5 +2,5 @@ package vamsee.application.studytube
 
 data class Skills(
     val name: String,
-    val img: String
+    val img: Int
 )
