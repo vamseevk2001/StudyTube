@@ -18,6 +18,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loading"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
@@ -37,7 +50,7 @@
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_button"
         android:layout_width="match_parent"
-        android:padding="10dp"
+        android:padding="20dp"
         android:layout_height="wrap_content"
         android:onClick="signin"
         app:layout_constraintBottom_toBottomOf="parent"
