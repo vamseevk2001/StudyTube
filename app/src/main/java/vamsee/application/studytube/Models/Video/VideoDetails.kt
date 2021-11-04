@@ -4,6 +4,6 @@ data class VideoDetails(
     val channelId: String,
     val title: String,
    // val description: String,
-    //val thumbnails: String,
-    val channelTitle: String
+    val channelTitle: String,
+    val thumbnails: HashMap<String, ThumbnailUrl>
 )

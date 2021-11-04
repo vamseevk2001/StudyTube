@@ -10,16 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import vamsee.application.studytube.Adapter.PlaylistAdapter
 import vamsee.application.studytube.Models.Search
 import vamsee.application.studytube.Models.Video.VideoDetails
+import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.Repository.Repository
 
 class SkillDescription : AppCompatActivity() {
 
     lateinit var mAdapter: PlaylistAdapter
     private lateinit var viewModel: MainViewModel
-    var mPlaylist: ArrayList<VideoDetails> = ArrayList()
+   // var mPlaylist: ArrayList<VideoDetails> = ArrayList()
     var ids: ArrayList<String> = ArrayList()
     var IDS: List<Search> = listOf()
-    var videos: ArrayList<VideoDetails> = arrayListOf()
+    var videos: ArrayList<VideoResponse> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,18 +31,10 @@ class SkillDescription : AppCompatActivity() {
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        mPlaylist.add(
-            VideoDetails(
-                "",
-                " Complete Android n Developer Course",
-                 "Free Udemy Course"
-            )
-        )
         getVideoID()
         mAdapter = PlaylistAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = mAdapter
-
     }
 
 
@@ -74,7 +67,7 @@ class SkillDescription : AppCompatActivity() {
         viewModel.getVideoDetails(videoId)
         viewModel.videoResponse.observe(this, Observer {
             if (it.isSuccessful){
-                videos.add(it.body()?.items?.get(0)!!.snippet)
+                videos.add(it.body()?.items?.get(0)!!)
                 mAdapter.setData(videos)
             }
             else{
