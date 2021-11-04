@@ -8,59 +8,79 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vamsee.application.studytube.Adapter.PlaylistAdapter
-import vamsee.application.studytube.Models.Playlist
+import vamsee.application.studytube.Models.Search
+import vamsee.application.studytube.Models.Video.VideoDetails
 import vamsee.application.studytube.Repository.Repository
 
 class SkillDescription : AppCompatActivity() {
 
-    lateinit var  mAdapter: PlaylistAdapter
+    lateinit var mAdapter: PlaylistAdapter
     private lateinit var viewModel: MainViewModel
-    var mPlaylist: ArrayList<Playlist> = ArrayList()
+    var mPlaylist: ArrayList<VideoDetails> = ArrayList()
+    var ids: ArrayList<String> = ArrayList()
+    var IDS: List<Search> = listOf()
+    var videos: ArrayList<VideoDetails> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill_description)
 
         val recyclerView: RecyclerView = findViewById(R.id.playlist)
-
+        ids.add("vmseeee")
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.search()
-        viewModel.myResponse.observe(this, Observer {
-            response ->
-            if (response.isSuccessful){
-                Log.d("IamThereDw", response.body().toString())
-            }
-            else{
-                Log.d("ded", "I am not there !!1")
-            }
-        }
+        mPlaylist.add(
+            VideoDetails(
+                "",
+                " Complete Android n Developer Course",
+                 "Free Udemy Course"
+            )
         )
-
-
-
-        mPlaylist.add(Playlist("Android Development Tutorial for Beginners",
-            R.drawable.tn1, "Anuj Bhaiya", 19))
-        mPlaylist.add(Playlist("Android Development Tutorials in Hindi",
-            R.drawable.tn2, "CodeWithHarry", 23))
-        mPlaylist.add(Playlist("Android Developer Fundamentals",
-            R.drawable.th3, "Google Developers India", 69))
-        mPlaylist.add(Playlist("The Complete Android App Developer Course",
-            R.drawable.th4, "Master Coding", 228))
-        mPlaylist.add(Playlist(" Complete Android n Developer Course",
-            R.drawable.tn5, "Free Udemy Course", 19))
-        mPlaylist.add(Playlist("Android Developer Fundamentals",
-            R.drawable.th3, "Google Developers India", 69))
-        mPlaylist.add(Playlist("The Complete Android App Developer Course",
-            R.drawable.th4, "Master Coding", 228))
-        mPlaylist.add(Playlist(" Complete Android n Developer Course",
-            R.drawable.tn5, "Free Udemy Course", 19))
-
+        getVideoID()
         mAdapter = PlaylistAdapter()
-        mAdapter.updateItems(mPlaylist)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = mAdapter
+
+    }
+
+
+    private fun getVideoID() {
+        viewModel.search()
+        viewModel.myResponse.observe(this, Observer {
+            Log.d("Video", it.body()?.items.toString())
+            Log.d("SIZE", it.body()?.items?.size!!.toString())
+            IDS = it.body()?.items!!
+
+            val videoIDs = it.body()?.items
+            Log.d("VideoIDs", videoIDs.toString())
+            for (video in it.body()?.items!!){
+                if (video.id.videoId != null){
+                    Log.d("VIDEO", video.id.videoId)
+                    getVideoDetails(video.id.videoId)
+                }
+                else{
+                    continue
+                }
+            }
+        })
+
+        Log.d("VIDEO", viewModel.id.toString())
+
+        Log.d("VideoID", IDS.toString())
+    }
+
+    private fun getVideoDetails(videoId: String){
+        viewModel.getVideoDetails(videoId)
+        viewModel.videoResponse.observe(this, Observer {
+            if (it.isSuccessful){
+                videos.add(it.body()?.items?.get(0)!!.snippet)
+                mAdapter.setData(videos)
+            }
+            else{
+                Log.d("API", "you are ded!!!")
+            }
+        })
 
     }
 }

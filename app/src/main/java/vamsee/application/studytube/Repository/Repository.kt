@@ -2,10 +2,15 @@ package vamsee.application.studytube.Repository
 
 import retrofit2.Response
 import vamsee.application.studytube.API.RetrofitInstance
-import vamsee.application.studytube.Models.Search
+import vamsee.application.studytube.Models.SearchItems
+import vamsee.application.studytube.Models.Video.VideoListResponse
 
 class Repository {
-    suspend fun search(): Response<Search>{
+    suspend fun search(): Response<SearchItems>{
         return RetrofitInstance.api.search()
+    }
+
+    suspend fun getVideoDetails(id: String): Response<VideoListResponse>{
+        return RetrofitInstance.api.getVideoDetails(id)
     }
 }

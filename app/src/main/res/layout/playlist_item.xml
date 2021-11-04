@@ -31,20 +31,20 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/no_of_videos"
-                android:layout_width="62dp"
-                android:layout_height="120dp"
-                android:text="19"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:background="@color/black"
-                android:alpha="0.5"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@id/playlist_thumbnail"
-                app:layout_constraintEnd_toEndOf="@id/playlist_thumbnail"
-                app:layout_constraintTop_toTopOf="@id/playlist_thumbnail"
-                />
+<!--            <TextView-->
+<!--                android:id="@+id/no_of_videos"-->
+<!--                android:layout_width="62dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:text="19"-->
+<!--                android:textAlignment="center"-->
+<!--                android:gravity="center"-->
+<!--                android:background="@color/black"-->
+<!--                android:alpha="0.5"-->
+<!--                android:textColor="@color/white"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/playlist_thumbnail"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/playlist_thumbnail"-->
+<!--                app:layout_constraintTop_toTopOf="@id/playlist_thumbnail"-->
+<!--                />-->
 
                 <TextView
                     android:id="@+id/playlistTitle"
@@ -55,13 +55,14 @@
                     app:layout_constraintStart_toEndOf="@id/playlist_thumbnail"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:text="Android Development Tutorial for Beginners"
-                    android:textSize="18sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/youtuberName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
+                    android:textSize="12sp"
                     app:layout_constraintTop_toBottomOf="@id/playlistTitle"
                     app:layout_constraintStart_toEndOf="@id/playlist_thumbnail"
                     android:text="Anuj Bhaiya" />
