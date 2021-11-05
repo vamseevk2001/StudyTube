@@ -82,11 +82,55 @@
                 android:id="@+id/youtuberName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
                 android:textSize="12sp"
+                android:paddingStart="4dp"
+                android:paddingBottom="8dp"
                 app:layout_constraintTop_toBottomOf="@id/playlistTitle"
                 app:layout_constraintStart_toEndOf="@id/playlist_thumbnail"
                 android:text="Anuj Bhaiya" />
+
+            <TextView
+                android:id="@+id/views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="4dp"
+                android:textSize="12sp"
+                android:paddingBottom="6dp"
+                app:layout_constraintStart_toEndOf="@id/playlist_thumbnail"
+                app:layout_constraintTop_toBottomOf="@id/youtuberName"
+                android:text="3.5M views"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/likes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="4dp"
+                app:layout_constraintStart_toEndOf="@id/playlist_thumbnail"
+                app:layout_constraintTop_toBottomOf="@id/views"
+                android:text=" 3.5M"
+                android:drawableTint="@color/light_blue_600"
+                android:textSize="12sp"
+                android:drawableLeft="@drawable/ic_baseline_thumb_up_24"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/dislikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="12sp"
+                android:drawableTint="#FF7F7F"
+                app:layout_constraintStart_toEndOf="@id/likes"
+                app:layout_constraintBottom_toBottomOf="@id/likes"
+                android:drawableLeft="@drawable/ic_baseline_thumb_down_24"
+                android:text=" 3.5M"
+                android:gravity="center"
+                />
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

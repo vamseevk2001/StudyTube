@@ -15,7 +15,11 @@ import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.R
 import vamsee.application.studytube.SkillDescription
 import java.lang.String
+import java.text.DecimalFormat
 import java.time.Duration
+import kotlin.math.floor
+import kotlin.math.log10
+import kotlin.math.pow
 
 class PlaylistAdapter: RecyclerView.Adapter<PlaylistViewHolder>() {
 
@@ -32,7 +36,6 @@ class PlaylistAdapter: RecyclerView.Adapter<PlaylistViewHolder>() {
         holder.title.text = currentItem.snippet.title
         Picasso.get().load(currentItem.snippet.thumbnails["standard"]?.url).placeholder(R.drawable.th3).into(holder.thumbnail)
         holder.creater.text = currentItem.snippet.channelTitle
-        var time = ""
         var result = currentItem.contentDetails.duration
         var string = result.drop(2)
         Log.d("DURATION", string)
@@ -41,36 +44,12 @@ class PlaylistAdapter: RecyclerView.Adapter<PlaylistViewHolder>() {
         string = string.replace('M', ':')
         string = string.dropLast(1)
 
-        //var k = 0
-//        if (string.length > 6){
-//            while (string[k] == 'H'){
-//                time += string[k].toChar()
-//                k++
-//            }
-//            time += ':'
-//            while (string[k] == 'M'){
-//                time += string[k]
-//                k++
-//            }
-//            time += ":"
-//            while (string[k] == 'S'){
-//                time += string[k]
-//                k++
-//            }
-//        }
-//        else{
-//            while (string[k] == 'M'){
-//                time += string[k]
-//                k++
-//            }
-//            time += ":"
-//            while (string[k] == 'S'){
-//                time += string[k]
-//                k++
-//            }
-//        }
-
         holder.duration.text = string
+
+        holder.likes.text = " " + prettyCount(currentItem.statistics.likeCount.toInt())
+        holder.dislikes.text = " " + prettyCount(currentItem.statistics.dislikeCount.toInt())
+        holder.views.text = prettyCount(currentItem.statistics.viewCount.toInt()) + " views"
+
     }
 
     override fun getItemCount(): Int {
@@ -83,6 +62,20 @@ class PlaylistAdapter: RecyclerView.Adapter<PlaylistViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun prettyCount(number: Number): kotlin.String? {
+        val suffix = charArrayOf(' ', 'k', 'M', 'B', 'T', 'P', 'E')
+        val numValue = number.toLong()
+        val value = floor(log10(numValue.toDouble())).toInt()
+        val base = value / 3
+        return if (value >= 3 && base < suffix.size) {
+            DecimalFormat("#0.0").format(
+                numValue / 10.0.pow((base * 3).toDouble())
+            ) + suffix[base]
+        } else {
+            DecimalFormat("#,##0").format(numValue)
+        }
+    }
+
 }
 
 class PlaylistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -90,5 +83,8 @@ class PlaylistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     val title: TextView = itemView.findViewById(R.id.playlistTitle)
    // val count: TextView = itemView.findViewById(R.id.no_of_videos)
     val duration: TextView = itemView.findViewById(R.id.duration)
+    val views: TextView = itemView.findViewById(R.id.views)
+    val likes: TextView = itemView.findViewById(R.id.likes)
+    val dislikes: TextView = itemView.findViewById(R.id.dislikes)
     val creater: TextView = itemView.findViewById(R.id.youtuberName)
 }
