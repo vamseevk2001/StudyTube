@@ -2,21 +2,4 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/my_nav">
-
-    <activity
-        android:id="@+id/dashboard"
-        android:name="vamsee.application.studytube.Dashboard"
-        android:label="activity_dashboard"
-        tools:layout="@layout/activity_dashboard" />
-    <activity
-        android:id="@+id/explore"
-        android:name="vamsee.application.studytube.Explore"
-        android:label="activity_explore"
-        tools:layout="@layout/activity_explore" />
-    <activity
-        android:id="@+id/wishlist"
-        android:name="vamsee.application.studytube.Wishlist"
-        android:label="activity_wishlist"
-        tools:layout="@layout/activity_wishlist" />
-</navigation>
+    android:id="@+id/my_nav"/>
