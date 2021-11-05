@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "774398556377",
+    "project_id": "studytube-52f99",
+    "storage_bucket": "studytube-52f99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774398556377:android:18fbb0eb5a036a277ae6c8",
+        "android_client_info": {
+          "package_name": "vamsee.application.studytube"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774398556377-0n7nu8s48vmeu9kc33aaomamhp6tatj4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vamsee.application.studytube",
+            "certificate_hash": "d3dfc9349a9966702bacb84b01d393ba969db083"
+          }
+        },
+        {
+          "client_id": "774398556377-jaqer3ucsobj71h62b8gnrljus9rg948.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgiDUURdq7RURRYORrFH5ZkDHDUqhiDFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774398556377-jaqer3ucsobj71h62b8gnrljus9rg948.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

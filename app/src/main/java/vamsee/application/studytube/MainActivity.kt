@@ -1,5 +1,6 @@
 package vamsee.application.studytube
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,5 +11,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun signin(view: View) {}
+    fun signin(view: View) {
+        var intent = Intent(this, Dashboard::class.java)
+        startActivity(intent)
+    }
 }

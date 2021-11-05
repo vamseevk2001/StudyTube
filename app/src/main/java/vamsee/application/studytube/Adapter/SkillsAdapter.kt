@@ -9,13 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import vamsee.application.studytube.R
 import vamsee.application.studytube.Models.Skills
 
-class SkillsAdapter: RecyclerView.Adapter<SkillViewHolder>() {
+class SkillsAdapter(private val listner: SkillClick): RecyclerView.Adapter<SkillViewHolder>() {
 
     private val items: ArrayList<Skills> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkillViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.skill_item, parent, false)
         val viewHolder = SkillViewHolder(view)
+        view.setOnClickListener{
+            listner.onSkillClick(items[viewHolder.adapterPosition])
+        }
         return viewHolder
     }
 
@@ -23,6 +26,7 @@ class SkillsAdapter: RecyclerView.Adapter<SkillViewHolder>() {
         val currentItem = items[position]
         holder.skill_name.text = currentItem.name
         holder.skill_icon.setImageResource(currentItem.img)
+
     }
 
     override fun getItemCount(): Int {
@@ -41,4 +45,8 @@ class SkillViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val skill_name = itemView.findViewById<TextView>(R.id.skill_name)
     val skill_icon = itemView.findViewById<ImageView>(R.id.skill_icon)
 
+}
+
+interface SkillClick{
+    fun onSkillClick(item: Skills)
 }
