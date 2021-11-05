@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "774398556377-rrs4rjb01nat3j2e69kdrnlmgh6mm63h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vamsee.application.studytube",
+            "certificate_hash": "0946db8cbf9c35e0ac0d6b8d0f89e3d79d477fb3"
+          }
+        },
+        {
           "client_id": "774398556377-jaqer3ucsobj71h62b8gnrljus9rg948.apps.googleusercontent.com",
           "client_type": 3
         }
