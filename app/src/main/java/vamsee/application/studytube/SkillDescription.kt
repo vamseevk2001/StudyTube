@@ -1,14 +1,18 @@
 package vamsee.application.studytube
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vamsee.application.studytube.Adapter.PlaylistAdapter
 import vamsee.application.studytube.Models.Search
+import vamsee.application.studytube.Models.Skills
 import vamsee.application.studytube.Models.Video.VideoDetails
 import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.Repository.Repository
@@ -26,6 +30,8 @@ class SkillDescription : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill_description)
 
+
+
         val recyclerView: RecyclerView = findViewById(R.id.playlist)
         ids.add("vmseeee")
         val repository = Repository()
@@ -39,7 +45,10 @@ class SkillDescription : AppCompatActivity() {
 
 
     private fun getVideoID() {
-        viewModel.search()
+        val name = intent.getStringExtra("skill").toString()
+        val desc_title: TextView = findViewById(R.id.skill_name_desc)
+        desc_title.text = name
+        viewModel.search(name)
         viewModel.myResponse.observe(this, Observer {
             Log.d("Video", it.body()?.items.toString())
             //Log.d("SIZE", it.body()?.items?.size!!.toString())
@@ -75,5 +84,10 @@ class SkillDescription : AppCompatActivity() {
             }
         })
 
+    }
+
+    fun goBackSkills(view: View) {
+        val intent = Intent(this, Explore::class.java)
+        startActivity(intent)
     }
 }

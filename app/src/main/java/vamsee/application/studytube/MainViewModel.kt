@@ -13,9 +13,9 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     val myResponse: MutableLiveData<retrofit2.Response<SearchItems>> = MutableLiveData()
     val videoResponse: MutableLiveData<retrofit2.Response<VideoListResponse>> = MutableLiveData()
     var id: List<Response<SearchItems>> = listOf()
-    fun search() {
+    fun search(name: String) {
         viewModelScope.launch {
-            val searchRes = repository.search()
+            val searchRes = repository.search(name)
             myResponse.value = searchRes
             id = listOf(searchRes)
         }

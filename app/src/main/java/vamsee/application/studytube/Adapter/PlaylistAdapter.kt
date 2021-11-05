@@ -1,6 +1,5 @@
 package vamsee.application.studytube.Adapter
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
-import vamsee.application.studytube.Models.Video.VideoDetails
 import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.R
 import vamsee.application.studytube.SkillDescription
@@ -34,7 +31,7 @@ class PlaylistAdapter: RecyclerView.Adapter<PlaylistViewHolder>() {
     override fun onBindViewHolder(holder: PlaylistViewHolder, position: Int) {
         val currentItem = items[position]
         holder.title.text = currentItem.snippet.title
-        Picasso.get().load(currentItem.snippet.thumbnails["standard"]?.url).placeholder(R.drawable.th3).into(holder.thumbnail)
+        Picasso.get().load(currentItem.snippet.thumbnails["standard"]?.url).into(holder.thumbnail)
         holder.creater.text = currentItem.snippet.channelTitle
         var result = currentItem.contentDetails.duration
         var string = result.drop(2)
