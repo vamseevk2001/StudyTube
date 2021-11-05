@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import vamsee.application.studytube.Explore
 import vamsee.application.studytube.R
 import vamsee.application.studytube.Models.Skills
+import vamsee.application.studytube.explore_frag
 
-class SkillsAdapter(private val listner: Explore): RecyclerView.Adapter<SkillViewHolder>() {
+class SkillsAdapter(private val listner: explore_frag): RecyclerView.Adapter<SkillViewHolder>() {
 
     private val items: ArrayList<Skills> = ArrayList()
 

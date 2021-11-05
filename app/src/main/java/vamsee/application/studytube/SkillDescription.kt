@@ -21,7 +21,6 @@ class SkillDescription : AppCompatActivity() {
 
     lateinit var mAdapter: PlaylistAdapter
     private lateinit var viewModel: MainViewModel
-   // var mPlaylist: ArrayList<VideoDetails> = ArrayList()
     var ids: ArrayList<String> = ArrayList()
     var IDS: List<Search> = listOf()
     var videos: ArrayList<VideoResponse> = arrayListOf()
@@ -87,7 +86,7 @@ class SkillDescription : AppCompatActivity() {
     }
 
     fun goBackSkills(view: View) {
-        val intent = Intent(this, Explore::class.java)
+        val intent = Intent(this, explore_frag::class.java)
         startActivity(intent)
     }
 }
