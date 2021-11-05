@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Gunal/AndroidStudioProjects/StudyTube/app/src/main/res/layout/activity_main.xml" value="0.2608695652173913" />
+        <entry key="..\:/Users/Gunal/AndroidStudioProjects/StudyTube/app/src/main/res/layout/activity_skill_description.xml" value="0.2608695652173913" />
         <entry key="..\:/Users/Gunal/AndroidStudioProjects/StudyTube/app/src/main/res/layout/activity_wishlist.xml" value="0.11666666666666667" />
         <entry key="..\:/Users/Gunal/AndroidStudioProjects/StudyTube/app/src/main/res/layout/bottomnav.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/Gunal/AndroidStudioProjects/StudyTube/app/src/main/res/menu/bottom_menu.xml" value="0.26979166666666665" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_explore.xml" value="0.25" />

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dashboard"
+        android:icon="@drawable/ic_twotone_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/explore"
+        android:icon="@drawable/ic_twotone_explore"
+        android:title="Explore" />
+    <item
+        android:id="@+id/watchlist"
+        android:icon="@drawable/ic_twotone_playlist"
+        android:title="Watchlist" />
+</menu>
