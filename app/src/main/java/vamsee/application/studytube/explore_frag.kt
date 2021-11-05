@@ -5,21 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import vamsee.application.studytube.Adapter.SkillsAdapter
-import vamsee.application.studytube.Models.Skills
 
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+/**
+ * A simple [Fragment] subclass.
+ * Use the [explore_frag.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class explore_frag : Fragment() {
-
-    lateinit var mAdapter: SkillsAdapter
-    val mSkills: ArrayList<Skills> = ArrayList()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-
     }
 
     override fun onCreateView(
@@ -29,5 +25,4 @@ class explore_frag : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_explore_frag, container, false)
     }
-
 }
