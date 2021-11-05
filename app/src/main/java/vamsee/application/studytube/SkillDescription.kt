@@ -42,8 +42,8 @@ class SkillDescription : AppCompatActivity() {
         viewModel.search()
         viewModel.myResponse.observe(this, Observer {
             Log.d("Video", it.body()?.items.toString())
-            Log.d("SIZE", it.body()?.items?.size!!.toString())
-            IDS = it.body()?.items!!
+            //Log.d("SIZE", it.body()?.items?.size!!.toString())
+//            IDS = it.body()?.items!!
 
             val videoIDs = it.body()?.items
             Log.d("VideoIDs", videoIDs.toString())

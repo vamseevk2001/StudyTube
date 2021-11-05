@@ -6,5 +6,6 @@ data class VideoResponse(
     val kind: String,
     val id: String,
     val snippet: VideoDetails,
+    val contentDetails: VideoDuration
 
 )
