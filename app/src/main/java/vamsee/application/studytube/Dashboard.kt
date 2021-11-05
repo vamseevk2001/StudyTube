@@ -12,8 +12,5 @@ class Dashboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-        val bottNavView=findViewById<BottomNavigationView>(R.id.bottnav)
-        val navController =findNavController(R.id.fragment)
-        bottNavView.setupWithNavController(navController)
     }
 }
