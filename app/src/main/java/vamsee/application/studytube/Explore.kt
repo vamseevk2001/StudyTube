@@ -11,7 +11,7 @@ import vamsee.application.studytube.Models.Skills
 
 class Explore : AppCompatActivity(), SkillClick {
 
-    lateinit var mAdapter: SkillsAdapter
+    //lateinit var mAdapter: SkillsAdapter
     val mSkills: ArrayList<Skills> = ArrayList()
 
 
@@ -29,11 +29,11 @@ class Explore : AppCompatActivity(), SkillClick {
         mSkills.add(Skills("C", R.drawable.c))
         mSkills.add(Skills("Javascript", R.drawable.javascript))
 
-       // mAdapter = SkillsAdapter(this)
-        mAdapter.updateSkills(mSkills)
-        recyclerView.adapter = mAdapter
-        val gridLayoutManager = GridLayoutManager(applicationContext, 2)
-        recyclerView.layoutManager = gridLayoutManager
+//       mAdapter = SkillsAdapter(this)
+//        mAdapter.updateSkills(mSkills)
+//        recyclerView.adapter = mAdapter
+//        val gridLayoutManager = GridLayoutManager(applicationContext, 2)
+//        recyclerView.layoutManager = gridLayoutManager
 
     }
 

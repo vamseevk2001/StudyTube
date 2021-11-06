@@ -11,13 +11,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import vamsee.application.studytube.Adapter.PlaylistAdapter
+import vamsee.application.studytube.Adapter.videoClick
 import vamsee.application.studytube.Models.Search
 import vamsee.application.studytube.Models.Skills
 import vamsee.application.studytube.Models.Video.VideoDetails
 import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.Repository.Repository
 
-class SkillDescription : AppCompatActivity() {
+class SkillDescription : AppCompatActivity(), videoClick {
 
     lateinit var mAdapter: PlaylistAdapter
     private lateinit var viewModel: MainViewModel
@@ -37,7 +38,7 @@ class SkillDescription : AppCompatActivity() {
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         getVideoID()
-        mAdapter = PlaylistAdapter()
+        mAdapter = PlaylistAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = mAdapter
     }
@@ -87,6 +88,20 @@ class SkillDescription : AppCompatActivity() {
 
     fun goBackSkills(view: View) {
         val intent = Intent(this, explore_frag::class.java)
+        startActivity(intent)
+    }
+
+    override fun onVideoClick(item: VideoResponse) {
+        val intent = Intent(this, videoPlayer::class.java)
+        intent.putExtra("videoID", item.id)
+        intent.putExtra("title", item.snippet.title)
+        intent.putExtra("channelName", item.snippet.channelTitle)
+        intent.putExtra("channelID", item.snippet.channelId)
+        intent.putExtra("likes", item.statistics.likeCount)
+        intent.putExtra("dislike", item.statistics.dislikeCount)
+        intent.putExtra("views", item.statistics.viewCount)
+        intent.putExtra("desc", item.snippet.description)
+        intent.putExtra("time", item.snippet.publishedAt)
         startActivity(intent)
     }
 }

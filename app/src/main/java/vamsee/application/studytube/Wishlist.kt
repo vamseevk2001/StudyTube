@@ -9,7 +9,7 @@ import vamsee.application.studytube.Models.Video.VideoDetails
 
 class Wishlist : AppCompatActivity() {
 
-    lateinit var  mAdapter: PlaylistAdapter
+    //lateinit var  mAdapter: PlaylistAdapter
     var mPlaylist: ArrayList<VideoDetails> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,10 +26,10 @@ class Wishlist : AppCompatActivity() {
 //            R.drawable.th3, "Google Developers India", 69))
 
 
-        mAdapter = PlaylistAdapter()
+       // mAdapter = PlaylistAdapter()
        // mAdapter.updateItems(mPlaylist)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = mAdapter
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.adapter = mAdapter
 
 
     }

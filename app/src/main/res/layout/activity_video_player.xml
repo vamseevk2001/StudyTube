@@ -6,4 +6,214 @@
     android:layout_height="match_parent"
     tools:context=".videoPlayer">
 
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/YoutubeVideoPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#262626"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/YoutubeVideoPlayer">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        >
+
+        <TextView
+            android:id="@+id/VideoTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="A day in a life of a Software Engineer"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/VideoViews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="2M views"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/VideoTitle" />
+
+        <TextView
+            android:id="@+id/UploadDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="2 months ago"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/VideoViews"
+            app:layout_constraintTop_toBottomOf="@id/VideoTitle" />
+
+
+        <ImageView
+            android:id="@+id/likeImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            android:tint="@color/light_blue_600"
+            android:src="@drawable/ic_baseline_thumb_up_24"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/UploadDate"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/VideoLikes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="50K"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/likeImage" />
+
+        <ImageView
+            android:id="@+id/dislikeImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_baseline_thumb_down_24"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/UploadDate"
+            android:tint="#FF7F7F"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/VideoDislikes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="5K"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toEndOf="@+id/VideoLikes"
+            app:layout_constraintTop_toBottomOf="@id/dislikeImage" />
+
+        <ImageView
+            android:id="@+id/watchlistImage"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_playlist_add_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/UploadDate"
+            android:tint="@color/ghotst_white"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/addToWatchList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Add to\nWatchlist"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/watchlistImage" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.66"
+            />
+
+
+
+        <ImageView
+            android:id="@+id/youtubeDP"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/th3"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addToWatchList" />
+
+        <TextView
+            android:id="@+id/youtuberName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PewDiePie"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintTop_toTopOf="@id/youtubeDP"
+            app:layout_constraintStart_toEndOf="@id/youtubeDP"/>
+
+        <TextView
+            android:id="@+id/SubscriberCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/white"
+            android:text="100M suscribers"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/youtuberName"
+            app:layout_constraintStart_toEndOf="@id/youtubeDP"/>
+
+<!--        <View-->
+<!--            app:layout_constraintTop_toBottomOf="@id/youtubeDP"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:background="@color/browser_actions_bg_grey"/>-->
+
+        <TextView
+            android:id="@+id/VideoDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:text="Here, we use the “View” tag to create a rectangle with a very small width such that it becomes a vertical line. In the above code, a red vertical line of height ‘560dp’ and width ‘2dp’ is drawn which is at a left margin of ‘175dp’ from the left side of the screen and at a top margin of ’20dp’ from the TextView that lies above it. The thickness of this line can be increased or decreased by increasing and decreasing the layout_width of the “View” tag respectively.
+
+Note: To run this code, we can copy and paste this code into the XML Visualizer provided by Udacity. Make sure to erase all the previously written code in the visualizer(if any)."
+            app:layout_constraintTop_toBottomOf="@id/youtubeDP"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

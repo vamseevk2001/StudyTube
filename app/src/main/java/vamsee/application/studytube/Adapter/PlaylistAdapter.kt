@@ -18,13 +18,16 @@ import kotlin.math.floor
 import kotlin.math.log10
 import kotlin.math.pow
 
-class PlaylistAdapter: RecyclerView.Adapter<PlaylistViewHolder>() {
+class PlaylistAdapter(private val listner: videoClick): RecyclerView.Adapter<PlaylistViewHolder>() {
 
     private val items: ArrayList<VideoResponse> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.playlist_item, parent, false)
         val viewHolder = PlaylistViewHolder(view)
+        view.setOnClickListener {
+            listner.onVideoClick(items[viewHolder.adapterPosition])
+        }
         return viewHolder
     }
 
@@ -84,4 +87,8 @@ class PlaylistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     val likes: TextView = itemView.findViewById(R.id.likes)
     val dislikes: TextView = itemView.findViewById(R.id.dislikes)
     val creater: TextView = itemView.findViewById(R.id.youtuberName)
+}
+
+interface videoClick{
+    fun onVideoClick(item: VideoResponse)
 }
