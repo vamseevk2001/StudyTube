@@ -24,18 +24,28 @@ class SignInAct:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // Configure Google Sign In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
+        //User already signed in condition:
+        mAuth = FirebaseAuth.getInstance()
+        val user = mAuth.currentUser
+        if (user != null) {
+            val intent = Intent(this, Dashboard::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            // Configure Google Sign In
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+            googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        //Firebase Auth instance
-        mAuth= FirebaseAuth.getInstance()
-        google_button.setOnClickListener {
-            signIn()
+            //Firebase Auth instance
+
+            google_button.setOnClickListener {
+                signIn()
+            }
+            finish()
         }
     }
 
@@ -75,6 +85,7 @@ class SignInAct:AppCompatActivity() {
                     Log.d("SignInActivity", "signInWithCredential:success")
                     val intent=Intent(this,Dashboard::class.java)
                     startActivity(intent)
+                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("SignInActivity", "signInWithCredential:failure", task.exception)
