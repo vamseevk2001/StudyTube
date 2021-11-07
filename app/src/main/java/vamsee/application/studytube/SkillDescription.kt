@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import vamsee.application.studytube.Adapter.PlaylistAdapter
 import vamsee.application.studytube.Adapter.videoClick
 import vamsee.application.studytube.Models.Search
-import vamsee.application.studytube.Models.Skills
-import vamsee.application.studytube.Models.Video.VideoDetails
 import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.Repository.Repository
 
@@ -25,12 +23,13 @@ class SkillDescription : AppCompatActivity(), videoClick {
     var ids: ArrayList<String> = ArrayList()
     var IDS: List<Search> = listOf()
     var videos: ArrayList<VideoResponse> = arrayListOf()
+    private lateinit var intent_video: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill_description)
 
-
+        intent_video = Intent(this, videoPlayer::class.java)
 
         val recyclerView: RecyclerView = findViewById(R.id.playlist)
         ids.add("vmseeee")
@@ -41,6 +40,7 @@ class SkillDescription : AppCompatActivity(), videoClick {
         mAdapter = PlaylistAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = mAdapter
+
     }
 
 
@@ -77,6 +77,7 @@ class SkillDescription : AppCompatActivity(), videoClick {
         viewModel.videoResponse.observe(this, Observer {
             if (it.isSuccessful){
                 videos.add(it.body()?.items?.get(0)!!)
+                //getChannelDetails(it.body()!!.items[0].snippet.channelId)
                 mAdapter.setData(videos)
             }
             else{
@@ -86,22 +87,52 @@ class SkillDescription : AppCompatActivity(), videoClick {
 
     }
 
+    private fun getChannelDetails(id: String){
+        viewModel.getChannelDetails(id)
+        viewModel.channelResponse.observe(this, Observer {
+            if (it.isSuccessful){
+                it.body()?.items?.get(0)?.statistics?.subscriberCount?.let { it1 ->
+                    Log.d("COUNT",
+                        it1
+                    )
+                }
+                intent_video.putExtra("count", it.body()?.items?.get(0)?.statistics?.subscriberCount)
+                intent_video.putExtra("dp", it.body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url.toString())
+                Log.d("DP", it.body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url.toString())
+
+            }
+            else{
+                Log.d("API", "you are ded!!!")
+            }
+        })
+
+        //val dp = viewModel.channelResponse[0].body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url
+        //Log.d("DP", dp.toString())
+    }
+
     fun goBackSkills(view: View) {
         val intent = Intent(this, explore_frag::class.java)
         startActivity(intent)
     }
 
+
     override fun onVideoClick(item: VideoResponse) {
-        val intent = Intent(this, videoPlayer::class.java)
-        intent.putExtra("videoID", item.id)
-        intent.putExtra("title", item.snippet.title)
-        intent.putExtra("channelName", item.snippet.channelTitle)
-        intent.putExtra("channelID", item.snippet.channelId)
-        intent.putExtra("likes", item.statistics.likeCount)
-        intent.putExtra("dislike", item.statistics.dislikeCount)
-        intent.putExtra("views", item.statistics.viewCount)
-        intent.putExtra("desc", item.snippet.description)
-        intent.putExtra("time", item.snippet.publishedAt)
-        startActivity(intent)
+        getChannelDetails(item.snippet.channelId)
+
+        intent_video.putExtra("videoID", item.id)
+        intent_video.putExtra("title", item.snippet.title)
+        intent_video.putExtra("channelName", item.snippet.channelTitle)
+        intent_video.putExtra("channelID", item.snippet.channelId)
+        intent_video.putExtra("likes", item.statistics.likeCount)
+        intent_video.putExtra("dislike", item.statistics.dislikeCount)
+        intent_video.putExtra("views", item.statistics.viewCount)
+        intent_video.putExtra("desc", item.snippet.description)
+        intent_video.putExtra("time", item.snippet.publishedAt)
+        startActivity(intent_video)
     }
 }
+
+data class channel_details(
+    val subs: String,
+    val dp: String
+)

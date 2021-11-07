@@ -5,6 +5,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import retrofit2.http.GET
 import retrofit2.http.Query
+import vamsee.application.studytube.Models.Channel.Channel
 import vamsee.application.studytube.Models.SearchItems
 import vamsee.application.studytube.Models.Video.VideoListResponse
 
@@ -15,5 +16,8 @@ interface SimpleApi {
 
     @GET("videos?part=snippet%2CcontentDetails%2Cstatistics&key=AIzaSyD36dzhnPmdlveean9Z33K9_9us5pUIwHI")
     suspend fun getVideoDetails(@Query("id") id: String): retrofit2.Response<VideoListResponse>
+
+    @GET("channels?part=snippet%2Cstatistics&key=AIzaSyCod8lPe1sTf5y90E3ScvkTbZ_Ybl4xfs0")
+    suspend fun getChannelDetails(@Query("id") id: String): retrofit2.Response<Channel>
 
 }
