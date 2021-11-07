@@ -2,6 +2,7 @@ package vamsee.application.studytube
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -47,6 +48,16 @@ class SignInAct:AppCompatActivity() {
             }
             finish()
         }
+
+        Handler().postDelayed({
+            if(user!=null) {
+                val intent = Intent(this, Dashboard::class.java)
+                startActivity(intent)
+            }else{
+                val intent = Intent(this, SignInAct::class.java)
+                startActivity(intent)
+            }
+        },20000)
     }
 
     private fun signIn() {

@@ -26,7 +26,7 @@ class Explore : AppCompatActivity(), SkillClick {
         mSkills.add(Skills("Blockchain", R.drawable.blockchain))
         mSkills.add(Skills("C++", R.drawable.cpp))
         mSkills.add(Skills("python", R.drawable.python))
-        mSkills.add(Skills("C", R.drawable.c))
+        mSkills.add(Skills("Kotlin", R.drawable.kotlin))
         mSkills.add(Skills("Javascript", R.drawable.javascript))
 
 //       mAdapter = SkillsAdapter(this)

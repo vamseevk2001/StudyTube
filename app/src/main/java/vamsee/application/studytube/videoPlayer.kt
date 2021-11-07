@@ -50,14 +50,6 @@ class videoPlayer : YouTubeBaseActivity() {
 
         videoID = intent.getStringExtra("videoID").toString()
 
-        val repository = Repository()
-        val viewModelFactory = MainViewModelFactory(repository)
-//        viewModel = ViewModelProvider.of((AppCompatActivity) getActivity(), viewModelFactory).get(MainViewModel::class.java)
-        viewModel =
-            ViewModelProvider(applicationContext as AppCompatActivity, viewModelFactory).get(
-                MainViewModel::class.java
-            )
-
         title = findViewById(R.id.VideoTitle)
         viewCount = findViewById(R.id.VideoViews)
         likeCount = findViewById(R.id.VideoLikes)
@@ -101,6 +93,12 @@ class videoPlayer : YouTubeBaseActivity() {
         dislikeCount.text = intent.getStringExtra("dislike")?.toInt()?.let { prettyCount(it) }
         videoDesc.text = intent.getStringExtra("desc")
         youtuberName.text = intent.getStringExtra("channelName")
+        if (intent.getStringExtra("count").isNullOrBlank()){
+            subscriberCount.text = prettyCount(123133)
+        }
+        else
+            subscriberCount.text = intent.getStringExtra("count")?.toInt()?.let { prettyCount(it) } + " Subscribers"
+        Glide.with(this).load(intent.getStringExtra("dp").toString()).placeholder(R.drawable.kotlin).circleCrop().into(dp)
 
         // getChannelDetails(intent.getStringExtra("channelID").toString())
 
@@ -123,31 +121,6 @@ class videoPlayer : YouTubeBaseActivity() {
         }
     }
 
-//    private fun getChannelDetails(id: String){
-//        viewModel.getChannelDetails(id)
-//        viewModel.channelResponse.observe(applicationContext as (AppCompatActivity), Observer {
-//            if (it.isSuccessful){
-//                it.body()?.items?.get(0)?.statistics?.subscriberCount?.let { it1 ->
-//                    Log.d("COUNT",
-//                        it1
-//                    )
-//                }
-//
-//                subscriberCount.text = it.body()?.items?.get(0)?.statistics?.subscriberCount
-//                Glide.with(this).load(it.body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url).circleCrop().into(dp)
-//
-////                intent_video.putExtra("count", it.body()?.items?.get(0)?.statistics?.subscriberCount)
-////                intent_video.putExtra("dp", it.body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url.toString())
-//                Log.d("DP", it.body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url.toString())
-//
-//            }
-//            else{
-//                Log.d("API", "you are ded!!!")
-//            }
-//        })
-
-    //val dp = viewModel.channelResponse[0].body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url
-    //Log.d("DP", dp.toString())
 }
 
 
