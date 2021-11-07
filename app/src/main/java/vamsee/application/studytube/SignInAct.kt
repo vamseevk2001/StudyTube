@@ -31,8 +31,7 @@ class SignInAct:AppCompatActivity() {
         if (user != null) {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
-            finish()
-        } else {
+        }
             // Configure Google Sign In
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -46,18 +45,6 @@ class SignInAct:AppCompatActivity() {
             google_button.setOnClickListener {
                 signIn()
             }
-            finish()
-        }
-
-        Handler().postDelayed({
-            if(user!=null) {
-                val intent = Intent(this, Dashboard::class.java)
-                startActivity(intent)
-            }else{
-                val intent = Intent(this, SignInAct::class.java)
-                startActivity(intent)
-            }
-        },20000)
     }
 
     private fun signIn() {
@@ -96,7 +83,6 @@ class SignInAct:AppCompatActivity() {
                     Log.d("SignInActivity", "signInWithCredential:success")
                     val intent=Intent(this,Dashboard::class.java)
                     startActivity(intent)
-                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("SignInActivity", "signInWithCredential:failure", task.exception)
