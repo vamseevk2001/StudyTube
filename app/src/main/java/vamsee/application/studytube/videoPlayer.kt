@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -88,6 +89,10 @@ class videoPlayer : YouTubeBaseActivity() {
         dislikeCount.text = intent.getStringExtra("dislike")?.toInt()?.let { prettyCount(it) }
         videoDesc.text = intent.getStringExtra("desc")
         youtuberName.text = intent.getStringExtra("channelName")
+
+        subscriberCount.text = intent.getStringExtra("count")
+
+        Glide.with(this).load(intent.getStringExtra("dp")).circleCrop().into(dp)
 //        title.text = intent.getStringExtra("title")
 //        title.text = intent.getStringExtra("title")
 
