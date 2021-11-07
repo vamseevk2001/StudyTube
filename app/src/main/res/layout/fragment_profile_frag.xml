@@ -12,16 +12,15 @@
         android:layout_height="57dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="120dp"
-        android:text="Help"
+        android:text="@string/help"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/logoutbtn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/profilename"
-        android:layout_width="229dp"
-        android:layout_height="106dp"
-        android:text="Name"
+        android:layout_width="238dp"
+        android:layout_height="63dp"
         android:textAlignment="center"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,14 +31,16 @@
         app:layout_constraintVertical_bias="0.213" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/disppic"
         android:layout_width="112dp"
         android:layout_height="102dp"
+        android:contentDescription="Display Picture"
         app:layout_constraintBottom_toTopOf="@+id/profilename"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.516"
+        tools:ignore="ImageContrastCheck"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -55,16 +56,20 @@
         app:layout_constraintTop_toBottomOf="@+id/profilename" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="232dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginBottom="100dp"
+        android:id="@+id/logoutbtn"
+        android:layout_width="153dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginBottom="116dp"
+        android:backgroundTint="#00FFFFFF"
         android:fontFamily="sans-serif"
         android:text="Log Out"
+        android:textColor="#D81B60"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/red_yt"
+        app:strokeWidth="3dp" />
 
     <TextView
         android:id="@+id/Settingstxt"
