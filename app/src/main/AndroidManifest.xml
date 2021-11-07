@@ -31,7 +31,7 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".SignInAct"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>

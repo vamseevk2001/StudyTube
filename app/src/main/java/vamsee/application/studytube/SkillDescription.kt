@@ -25,6 +25,7 @@ class SkillDescription : AppCompatActivity(), videoClick {
     var videos: ArrayList<VideoResponse> = arrayListOf()
     private lateinit var intent_video: Intent
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill_description)
@@ -77,7 +78,6 @@ class SkillDescription : AppCompatActivity(), videoClick {
         viewModel.videoResponse.observe(this, Observer {
             if (it.isSuccessful){
                 videos.add(it.body()?.items?.get(0)!!)
-                //getChannelDetails(it.body()!!.items[0].snippet.channelId)
                 mAdapter.setData(videos)
             }
             else{
@@ -117,7 +117,6 @@ class SkillDescription : AppCompatActivity(), videoClick {
 
 
     override fun onVideoClick(item: VideoResponse) {
-        getChannelDetails(item.snippet.channelId)
 
         intent_video.putExtra("videoID", item.id)
         intent_video.putExtra("title", item.snippet.title)
@@ -128,6 +127,7 @@ class SkillDescription : AppCompatActivity(), videoClick {
         intent_video.putExtra("views", item.statistics.viewCount)
         intent_video.putExtra("desc", item.snippet.description)
         intent_video.putExtra("time", item.snippet.publishedAt)
+        getChannelDetails(item.snippet.channelId)
         startActivity(intent_video)
     }
 }
