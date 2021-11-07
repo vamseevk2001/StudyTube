@@ -13,4 +13,8 @@
         android:id="@+id/wishlist_frag"
         android:icon="@drawable/ic_twotone_playlist"
         android:title="Watchlist" />
+    <item
+        android:id="@+id/profile_frag"
+        android:icon="@drawable/ic_twotone_profile"
+        android:title="Profile" />
 </menu>

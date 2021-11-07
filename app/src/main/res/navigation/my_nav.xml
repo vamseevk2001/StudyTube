@@ -19,4 +19,9 @@
         android:name="vamsee.application.studytube.Wishlist_frag"
         android:label="fragment_wishlist_frag"
         tools:layout="@layout/fragment_wishlist_frag" />
+    <fragment
+        android:id="@+id/profile_frag"
+        android:name="vamsee.application.studytube.Profile_frag"
+        android:label="fragment_profile_frag"
+        tools:layout="@layout/fragment_profile_frag" />
 </navigation>
