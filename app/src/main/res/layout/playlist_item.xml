@@ -23,9 +23,9 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/SHOW_PROGRESS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:lottie_rawRes="@raw/loading"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:lottie_rawRes="@raw/imageloading"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:layout_constraintBottom_toBottomOf="@id/playlist_thumbnail"
