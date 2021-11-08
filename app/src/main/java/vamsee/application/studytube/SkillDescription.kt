@@ -1,15 +1,16 @@
 package vamsee.application.studytube
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_skill_description.*
 import vamsee.application.studytube.Adapter.PlaylistAdapter
 import vamsee.application.studytube.Adapter.videoClick
 import vamsee.application.studytube.Models.Search
@@ -75,10 +76,12 @@ class SkillDescription : AppCompatActivity(), videoClick {
 
     private fun getVideoDetails(videoId: String){
         viewModel.getVideoDetails(videoId)
+        SHOW_PROGRESS.visibility = View.VISIBLE
         viewModel.videoResponse.observe(this, Observer {
             if (it.isSuccessful){
                 videos.add(it.body()?.items?.get(0)!!)
                 mAdapter.setData(videos)
+                SHOW_PROGRESS.visibility = View.GONE
             }
             else{
                 Log.d("API", "you are ded!!!")

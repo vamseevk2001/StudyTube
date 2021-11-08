@@ -42,4 +42,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/skill_name_desc" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/SHOW_PROGRESS"
+        android:layout_width="wrap_content"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/playlist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/playlist"
+        app:layout_constraintTop_toTopOf="@id/playlist" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

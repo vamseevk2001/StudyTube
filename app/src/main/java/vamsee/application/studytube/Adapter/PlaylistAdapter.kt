@@ -1,5 +1,6 @@
 package vamsee.application.studytube.Adapter
 
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +8,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.airbnb.lottie.LottieAnimationView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.R
-import vamsee.application.studytube.SkillDescription
-import java.lang.String
 import java.text.DecimalFormat
-import java.time.Duration
 import kotlin.math.floor
 import kotlin.math.log10
 import kotlin.math.pow
@@ -34,7 +37,30 @@ class PlaylistAdapter(private val listner: videoClick): RecyclerView.Adapter<Pla
     override fun onBindViewHolder(holder: PlaylistViewHolder, position: Int) {
         val currentItem = items[position]
         holder.title.text = currentItem.snippet.title
-        Picasso.get().load(currentItem.snippet.thumbnails["standard"]?.url).into(holder.thumbnail)
+        holder.loading.visibility = View.VISIBLE
+        Glide.with(holder.itemView.context).load(currentItem.snippet.thumbnails["standard"]?.url).listener(object : RequestListener<Drawable>{
+            override fun onLoadFailed(
+                e: GlideException?,
+                model: Any?,
+                target: Target<Drawable>?,
+                isFirstResource: Boolean
+            ): Boolean {
+                holder.loading.visibility = View.GONE
+                return false
+            }
+
+            override fun onResourceReady(
+                resource: Drawable?,
+                model: Any?,
+                target: Target<Drawable>?,
+                dataSource: DataSource?,
+                isFirstResource: Boolean
+            ): Boolean {
+                holder.loading.visibility = View.GONE
+                return false
+            }
+
+        }).into(holder.thumbnail)
         holder.creater.text = currentItem.snippet.channelTitle
         var result = currentItem.contentDetails.duration
         var string = result.drop(2)
@@ -82,6 +108,7 @@ class PlaylistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     val thumbnail: ImageView = itemView.findViewById(R.id.playlist_thumbnail)
     val title: TextView = itemView.findViewById(R.id.playlistTitle)
    // val count: TextView = itemView.findViewById(R.id.no_of_videos)
+    val loading: LottieAnimationView = itemView.findViewById(R.id.SHOW_PROGRESS)
     val duration: TextView = itemView.findViewById(R.id.duration)
     val views: TextView = itemView.findViewById(R.id.views)
     val likes: TextView = itemView.findViewById(R.id.likes)
