@@ -36,9 +36,9 @@ class PlaylistAdapter(private val listner: videoClick): RecyclerView.Adapter<Pla
 
     override fun onBindViewHolder(holder: PlaylistViewHolder, position: Int) {
         val currentItem = items[position]
-        holder.title.text = currentItem.snippet.title
+        holder.title.text = currentItem.snippet?.title
         holder.loading.visibility = View.VISIBLE
-        Glide.with(holder.itemView.context).load(currentItem.snippet.thumbnails["standard"]?.url).listener(object : RequestListener<Drawable>{
+        Glide.with(holder.itemView.context).load(currentItem.snippet?.thumbnails?.get("standard")?.url).listener(object : RequestListener<Drawable>{
             override fun onLoadFailed(
                 e: GlideException?,
                 model: Any?,
@@ -61,20 +61,28 @@ class PlaylistAdapter(private val listner: videoClick): RecyclerView.Adapter<Pla
             }
 
         }).into(holder.thumbnail)
-        holder.creater.text = currentItem.snippet.channelTitle
-        var result = currentItem.contentDetails.duration
-        var string = result.drop(2)
-        Log.d("DURATION", string)
+        holder.creater.text = currentItem.snippet?.channelTitle
+        var result = currentItem.contentDetails?.duration
+        var string = result?.drop(2)
+        if (string != null) {
+            Log.d("DURATION", string)
+        }
 
-        string = string.replace('H', ':')
-        string = string.replace('M', ':')
-        string = string.dropLast(1)
+        if (string != null) {
+            string = string.replace('H', ':')
+        }
+        string = string?.replace('M', ':')
+        string = string?.dropLast(1)
 
         holder.duration.text = string
 
-        holder.likes.text = " " + prettyCount(currentItem.statistics.likeCount.toInt())
-        holder.dislikes.text = " " + prettyCount(currentItem.statistics.dislikeCount.toInt())
-        holder.views.text = prettyCount(currentItem.statistics.viewCount.toInt()) + " views"
+        holder.likes.text = " " + currentItem.statistics?.likeCount?.let { prettyCount(it.toInt()) }
+        holder.dislikes.text = " " + currentItem.statistics?.dislikeCount?.toInt()?.let {
+            prettyCount(
+                it
+            )
+        }
+        holder.views.text = currentItem.statistics?.viewCount?.toInt()?.let { prettyCount(it) } + " views"
 
     }
 

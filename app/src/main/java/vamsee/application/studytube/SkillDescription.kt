@@ -122,15 +122,19 @@ class SkillDescription : AppCompatActivity(), videoClick {
     override fun onVideoClick(item: VideoResponse) {
 
         intent_video.putExtra("videoID", item.id)
-        intent_video.putExtra("title", item.snippet.title)
-        intent_video.putExtra("channelName", item.snippet.channelTitle)
-        intent_video.putExtra("channelID", item.snippet.channelId)
-        intent_video.putExtra("likes", item.statistics.likeCount)
-        intent_video.putExtra("dislike", item.statistics.dislikeCount)
-        intent_video.putExtra("views", item.statistics.viewCount)
-        intent_video.putExtra("desc", item.snippet.description)
-        intent_video.putExtra("time", item.snippet.publishedAt)
-        getChannelDetails(item.snippet.channelId)
+        intent_video.putExtra("title", item.snippet?.title)
+        intent_video.putExtra("channelName", item.snippet?.channelTitle)
+        intent_video.putExtra("channelID", item.snippet?.channelId)
+        intent_video.putExtra("likes", item.statistics?.likeCount)
+        intent_video.putExtra("dislike", item.statistics?.dislikeCount)
+        intent_video.putExtra("views", item.statistics?.viewCount)
+        intent_video.putExtra("desc", item.snippet?.description)
+        intent_video.putExtra("time", item.snippet?.publishedAt)
+        intent_video.putExtra("thumbnail", item.snippet?.thumbnails?.get("medium")?.url)
+        item.snippet?.channelId?.let { getChannelDetails(it) }
+
+
+        intent_video.putExtra("videoDetails", item)
         startActivity(intent_video)
     }
 }

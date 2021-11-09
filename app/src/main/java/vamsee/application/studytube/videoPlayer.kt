@@ -1,6 +1,7 @@
 package vamsee.application.studytube
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.google.android.youtube.player.YouTubePlayer.OnFullscreenListener
 import com.google.android.youtube.player.YouTubePlayerView
 import kotlinx.android.synthetic.main.activity_video_player.*
 import vamsee.application.studytube.Daos.VideoDao
+import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.videoPlayer
 import java.text.DecimalFormat
 import kotlin.math.floor
@@ -45,6 +47,12 @@ class videoPlayer : YouTubeBaseActivity() {
         val api_key = "AIzaSyAzSRqUWAASXDkNOeS4mkbWVo7QKHUhOo4"
 
         videoID = intent.getStringExtra("videoID").toString()
+
+        if (intent.hasExtra("videoDetails")){
+            val videoDetails: VideoResponse? = intent.getParcelableExtra<VideoResponse>("videoDetails")
+            Log.d("VIDEO_PLAYER", videoDetails.toString())
+        }
+
 
         title = findViewById(R.id.VideoTitle)
         viewCount = findViewById(R.id.VideoViews)
