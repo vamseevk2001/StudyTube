@@ -2,8 +2,6 @@ package vamsee.application.studytube
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.*
 import com.bumptech.glide.Glide
@@ -27,16 +25,7 @@ class videoPlayer : YouTubeBaseActivity() {
     private lateinit var youTubePlayerView: YouTubePlayerView
     var fullScreen: Boolean = false
     private lateinit var videoID: String
-    private lateinit var title: TextView
-    private lateinit var viewCount: TextView
-    private lateinit var likeCount: TextView
-    private lateinit var dislikeCount: TextView
-    private lateinit var uploadTime: TextView
-    private lateinit var videoDesc: TextView
-    private lateinit var youtuberName: TextView
-    private lateinit var subscriberCount: TextView
-    private lateinit var dp: ImageView
-    private lateinit var viewModel: MainViewModel
+    private lateinit var videoDetails: VideoResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,20 +38,9 @@ class videoPlayer : YouTubeBaseActivity() {
         videoID = intent.getStringExtra("videoID").toString()
 
         if (intent.hasExtra("videoDetails")){
-            val videoDetails: VideoResponse? = intent.getParcelableExtra<VideoResponse>("videoDetails")
+            videoDetails = intent.getParcelableExtra<VideoResponse>("videoDetails")!!
             Log.d("VIDEO_PLAYER", videoDetails.toString())
         }
-
-
-        title = findViewById(R.id.VideoTitle)
-        viewCount = findViewById(R.id.VideoViews)
-        likeCount = findViewById(R.id.VideoLikes)
-        dislikeCount = findViewById(R.id.VideoDislikes)
-        uploadTime = findViewById(R.id.UploadDate)
-        videoDesc = findViewById(R.id.VideoDesc)
-        youtuberName = findViewById(R.id.youtuberName)
-        subscriberCount = findViewById(R.id.SubscriberCount)
-        dp = findViewById(R.id.youtubeDP)
 
         watchlistImage.setOnClickListener {
             watchlist()
@@ -94,23 +72,20 @@ class videoPlayer : YouTubeBaseActivity() {
 
     fun setDetails() {
 
-        title.text = intent.getStringExtra("title")
-        viewCount.text = intent.getStringExtra("views")?.toInt()?.let { prettyCount(it) } + " views"
-        likeCount.text = intent.getStringExtra("likes")?.toInt()?.let { prettyCount(it) }
-        dislikeCount.text = intent.getStringExtra("dislike")?.toInt()?.let { prettyCount(it) }
-        videoDesc.text = intent.getStringExtra("desc")
-        youtuberName.text = intent.getStringExtra("channelName")
+        VideoTitle.text = videoDetails.snippet?.title
+        VideoViews.text = videoDetails.statistics?.viewCount?.toInt()?.let { prettyCount(it) } + " views"
+        VideoLikes.text = videoDetails.statistics?.likeCount?.toInt()?.let { prettyCount(it) }
+        VideoDislikes.text = videoDetails.statistics?.dislikeCount?.toInt()?.let { prettyCount(it) }
+        VideoDesc.text = videoDetails.snippet?.description
+        youtuberName.text = videoDetails.snippet?.channelTitle
         if (intent.getStringExtra("count").isNullOrBlank()){
-            subscriberCount.text = prettyCount(123133)
+            SubscriberCount.text = prettyCount(123133)
         }
-        else
-            subscriberCount.text = intent.getStringExtra("count")?.toInt()?.let { prettyCount(it) } + " Subscribers"
-        Glide.with(this).load(intent.getStringExtra("dp").toString()).placeholder(R.drawable.kotlin).circleCrop().into(dp)
-
+        else{
+            SubscriberCount.text = intent.getStringExtra("count")?.toInt()?.let { prettyCount(it) } + " Subscribers"
+            Glide.with(this).load(intent.getStringExtra("dp").toString()).placeholder(R.drawable.kotlin).circleCrop().into(youtubeDP)
+        }
         // getChannelDetails(intent.getStringExtra("channelID").toString())
-
-//        title.text = intent.getStringExtra("title")
-//        title.text = intent.getStringExtra("title")
 
     }
 
@@ -129,21 +104,8 @@ class videoPlayer : YouTubeBaseActivity() {
     }
 
     private fun watchlist(){
-            val videoDao = VideoDao()
-//        val kind = "youtube#video"
-//        val videoID = intent.getStringExtra("videoID").toString()
-//        val channelId = intent.getStringExtra("channelID").toString()
-//        val uploadDate = intent.getStringExtra("time")
-//        val title = intent.getStringExtra("title")
-//        val desc = intent.getStringExtra("desc")
-//        val channelTtile = intent.getStringExtra("channelName")
-//        val thumbnail = intent.getStringExtra("title")
-//        val title = intent.getStringExtra("title")
-//        val title = intent.getStringExtra("title")
-//        val title = intent.getStringExtra("title")
-
-        videoDao.addVideo(videoID)
-
+        val videoDao = VideoDao()
+        videoDao.addVideo(videoDetails)
         Toast.makeText(this, "Video added to watchlist successfully", Toast.LENGTH_SHORT).show()
     }
 

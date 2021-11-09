@@ -6,6 +6,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import vamsee.application.studytube.Models.Video.VideoResponse
 
 class VideoDao {
     val db = FirebaseFirestore.getInstance()
@@ -14,14 +15,14 @@ class VideoDao {
     val videoCollection = db.collection("users").document(currentUserId).collection("wishlist")
 
 
-    fun addVideo(videoId: String){
+    fun addVideo(video: VideoResponse){
 
         GlobalScope.launch(Dispatchers.IO) {
             val userDao = UserDao()
            // val user = userDao.getUserById(currentUserId).await().toObject(User::class.java)
             val currentTime = System.currentTimeMillis()
-            val videoIdClass = WatchlistVideoID(videoId, currentTime)
-            videoCollection.document().set(videoIdClass)
+            //val videoIdClass = WatchlistVideoID(videoId, currentTime)
+            videoCollection.document(video?.id.toString()).set(video)
         }
     }
 }

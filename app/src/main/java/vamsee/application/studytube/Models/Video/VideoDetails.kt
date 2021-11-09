@@ -9,7 +9,7 @@ data class VideoDetails(
     val title: String?,
     val description: String?,
     val channelTitle: String?,
-    val thumbnails: HashMap<String, ThumbnailUrl> = HashMap()
+    val thumbnails: HashMap<String, ThumbnailUrl>
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
