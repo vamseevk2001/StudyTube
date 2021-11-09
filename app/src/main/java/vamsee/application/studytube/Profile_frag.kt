@@ -47,8 +47,10 @@ class Profile_frag : Fragment() {
 
         binding.logoutbtn.setOnClickListener {
             mAuth.signOut()
+
             val intent = Intent(activity, SignInAct::class.java)
             startActivity(intent)
+
         }
     }
 }

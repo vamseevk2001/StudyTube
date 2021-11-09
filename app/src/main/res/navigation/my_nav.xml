@@ -14,6 +14,10 @@
             app:destination="@id/profile_frag"
             app:enterAnim="@anim/fui_slide_in_right"
             app:popEnterAnim="@anim/fui_slide_in_right" />
+        <action
+            android:id="@+id/action_dashboard_frag_to_explore_frag"
+            app:destination="@id/explore_frag"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/explore_frag"
