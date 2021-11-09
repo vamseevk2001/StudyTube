@@ -7,6 +7,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+import vamsee.application.studytube.Models.WatchlistVideoID
 import vamsee.application.studytube.Wishlist_frag
 import java.lang.Exception
 import java.lang.StringBuilder
@@ -29,8 +30,3 @@ class VideoDao {
     }
 
 }
-
-data class WatchlistVideoID(
-    val videoId: String,
-    val currentTimestamp: Long
-)

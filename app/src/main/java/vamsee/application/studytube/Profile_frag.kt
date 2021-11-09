@@ -10,6 +10,10 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import vamsee.application.studytube.databinding.FragmentDashboardFragBinding
 import vamsee.application.studytube.databinding.FragmentProfileFragBinding
+import android.net.Uri
+
+
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,6 +55,16 @@ class Profile_frag : Fragment() {
             val intent = Intent(activity, SignInAct::class.java)
             startActivity(intent)
 
+        }
+        binding.Settingstxt.setOnClickListener {
+            val uri = Uri.parse("https://myaccount.google.com/")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
+        binding.Helptxt.setOnClickListener {
+            val uri = Uri.parse("https://support.google.com/")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
         }
     }
 }
