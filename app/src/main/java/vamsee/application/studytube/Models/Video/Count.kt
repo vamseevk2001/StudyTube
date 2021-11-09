@@ -4,9 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Count(
-    val viewCount: String?,
-    val likeCount: String?,
-    val dislikeCount: String?
+    val viewCount: String? = "",
+    val likeCount: String? = "",
+    val dislikeCount: String? = ""
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),

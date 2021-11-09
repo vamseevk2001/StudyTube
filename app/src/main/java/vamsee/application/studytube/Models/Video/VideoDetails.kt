@@ -4,12 +4,12 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class VideoDetails(
-    val channelId: String?,
-    val publishedAt: String?,
-    val title: String?,
-    val description: String?,
-    val channelTitle: String?,
-    val thumbnails: Thumbnails?
+    val channelId: String? = "",
+    val publishedAt: String? = "",
+    val title: String? = "",
+    val description: String? = "",
+    val channelTitle: String? = "",
+    val thumbnails: Thumbnails? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),

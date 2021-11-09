@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Thumbnails(
-    val standard: ThumbnailUrl?
+    val standard: ThumbnailUrl? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(parcel.readParcelable(ThumbnailUrl::class.java.classLoader)) {
     }

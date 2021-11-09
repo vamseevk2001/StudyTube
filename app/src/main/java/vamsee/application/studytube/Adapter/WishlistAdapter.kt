@@ -1,20 +1,30 @@
 package vamsee.application.studytube.Adapter
 
+import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.R
-import android.view.View
-import com.airbnb.lottie.LottieAnimationView
-import vamsee.application.studytube.Models.WatchlistVideoID
+import java.text.DecimalFormat
+import kotlin.math.floor
+import kotlin.math.log10
+import kotlin.math.pow
 
 
-class WishlistAdapter (options: FirestoreRecyclerOptions<WatchlistVideoID>) : FirestoreRecyclerAdapter<WatchlistVideoID, WishlistAdapter.RequestViewHolder>(
+class WishlistAdapter (options: FirestoreRecyclerOptions<VideoResponse>) : FirestoreRecyclerAdapter<VideoResponse, WishlistAdapter.RequestViewHolder>(
         options) {
 
         class RequestViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -33,8 +43,71 @@ class WishlistAdapter (options: FirestoreRecyclerOptions<WatchlistVideoID>) : Fi
             return viewHolder
         }
 
-        override fun onBindViewHolder(holder: RequestViewHolder, position: Int, model: WatchlistVideoID) {
-            holder.title.text=model.videoId
+    override fun onBindViewHolder(holder: RequestViewHolder, position: Int, model: VideoResponse) {
+        holder.title.text = model.snippet?.title
+        holder.loading.visibility = View.VISIBLE
+        //Glide.with(holder.itemView.context).load(currentItem.snippet?.thumbnails?.get("standard")?.url).listener(object : RequestListener<Drawable>{
+        Glide.with(holder.itemView.context).load(model.snippet?.thumbnails?.standard?.url).listener(object :
+            RequestListener<Drawable> {
+            override fun onLoadFailed(
+                e: GlideException?,
+                model: Any?,
+                target: Target<Drawable>?,
+                isFirstResource: Boolean
+            ): Boolean {
+                holder.loading.visibility = View.GONE
+                return false
+            }
 
+            override fun onResourceReady(
+                resource: Drawable?,
+                model: Any?,
+                target: Target<Drawable>?,
+                dataSource: DataSource?,
+                isFirstResource: Boolean
+            ): Boolean {
+                holder.loading.visibility = View.GONE
+                return false
+            }
+
+        }).into(holder.thumbnail)
+        holder.creator.text = model.snippet?.channelTitle
+        var result = model.contentDetails?.duration
+        var string = result?.drop(2)
+        if (string != null) {
+            Log.d("DURATION", string)
+        }
+
+        if (string != null) {
+            string = string.replace('H', ':')
+        }
+        string = string?.replace('M', ':')
+        string = string?.dropLast(1)
+
+        holder.duration.text = string
+
+        holder.likes.text = " " + model.statistics?.likeCount?.let { prettyCount(it.toInt()) }
+        holder.dislikes.text = " " + model.statistics?.dislikeCount?.toInt()?.let {
+            prettyCount(
+                it
+            )
+        }
+        holder.views.text = model.statistics?.viewCount?.toInt()?.let { prettyCount(it) } + " views"
+    }
+
+    fun prettyCount(number: Number): kotlin.String? {
+        val suffix = charArrayOf(' ', 'k', 'M', 'B', 'T', 'P', 'E')
+        val numValue = number.toLong()
+        val value = floor(log10(numValue.toDouble())).toInt()
+        val base = value / 3
+        return if (value >= 3 && base < suffix.size) {
+            DecimalFormat("#0.0").format(
+                numValue / 10.0.pow((base * 3).toDouble())
+            ) + suffix[base]
+        } else {
+            DecimalFormat("#,##0").format(numValue)
         }
     }
+
+
+}

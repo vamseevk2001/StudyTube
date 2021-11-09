@@ -4,12 +4,13 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class VideoResponse(
-    val kind: String?,
-    val id: String?,
-    val snippet: VideoDetails?,
-    val contentDetails: VideoDuration?,
-    val statistics: Count?
+    val kind: String? = null,
+    val id: String? = null,
+    val snippet: VideoDetails? = VideoDetails(),
+    val contentDetails: VideoDuration? = VideoDuration(),
+    val statistics: Count? = Count()
 ) : Parcelable {
+
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
