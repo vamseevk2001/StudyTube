@@ -55,7 +55,7 @@ class videoPlayer : YouTubeBaseActivity() {
                     player.setOnFullscreenListener(OnFullscreenListener { _isFullScreen ->
                         fullScreen = _isFullScreen
                     })
-                    player.loadVideo(videoID)
+                    player.loadVideo(videoDetails.id)
                 }
             }
 

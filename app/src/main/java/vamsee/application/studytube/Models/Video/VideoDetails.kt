@@ -9,7 +9,7 @@ data class VideoDetails(
     val title: String?,
     val description: String?,
     val channelTitle: String?,
-    val thumbnails: HashMap<String, ThumbnailUrl>
+    val thumbnails: Thumbnails?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -17,7 +17,7 @@ data class VideoDetails(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        hashMapOf<String, ThumbnailUrl>()
+        parcel.readParcelable(Thumbnails::class.java.classLoader)
     ) {
     }
 
@@ -27,6 +27,7 @@ data class VideoDetails(
         parcel.writeString(title)
         parcel.writeString(description)
         parcel.writeString(channelTitle)
+        parcel.writeParcelable(thumbnails, flags)
     }
 
     override fun describeContents(): Int {

@@ -38,7 +38,8 @@ class PlaylistAdapter(private val listner: videoClick): RecyclerView.Adapter<Pla
         val currentItem = items[position]
         holder.title.text = currentItem.snippet?.title
         holder.loading.visibility = View.VISIBLE
-        Glide.with(holder.itemView.context).load(currentItem.snippet?.thumbnails?.get("standard")?.url).listener(object : RequestListener<Drawable>{
+        //Glide.with(holder.itemView.context).load(currentItem.snippet?.thumbnails?.get("standard")?.url).listener(object : RequestListener<Drawable>{
+        Glide.with(holder.itemView.context).load(currentItem.snippet?.thumbnails?.standard?.url).listener(object : RequestListener<Drawable>{
             override fun onLoadFailed(
                 e: GlideException?,
                 model: Any?,
