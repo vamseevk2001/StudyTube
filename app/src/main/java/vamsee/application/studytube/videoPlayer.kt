@@ -1,22 +1,18 @@
 package vamsee.application.studytube
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.*
 import com.bumptech.glide.Glide
-import com.google.android.gms.common.api.internal.LifecycleActivity
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerView
 import com.google.android.youtube.player.YouTubePlayer.OnFullscreenListener
-import vamsee.application.studytube.Models.VideoID
-import vamsee.application.studytube.Repository.Repository
-
+import com.google.android.youtube.player.YouTubePlayerView
+import kotlinx.android.synthetic.main.activity_video_player.*
+import vamsee.application.studytube.Daos.VideoDao
 import vamsee.application.studytube.videoPlayer
 import java.text.DecimalFormat
 import kotlin.math.floor
@@ -60,6 +56,9 @@ class videoPlayer : YouTubeBaseActivity() {
         subscriberCount = findViewById(R.id.SubscriberCount)
         dp = findViewById(R.id.youtubeDP)
 
+        watchlistImage.setOnClickListener {
+            watchlist()
+        }
 
         youTubePlayerView.initialize(api_key, object : YouTubePlayer.OnInitializedListener {
             override fun onInitializationSuccess(
@@ -119,6 +118,25 @@ class videoPlayer : YouTubeBaseActivity() {
         } else {
             DecimalFormat("#,##0").format(numValue)
         }
+    }
+
+    private fun watchlist(){
+            val videoDao = VideoDao()
+//        val kind = "youtube#video"
+//        val videoID = intent.getStringExtra("videoID").toString()
+//        val channelId = intent.getStringExtra("channelID").toString()
+//        val uploadDate = intent.getStringExtra("time")
+//        val title = intent.getStringExtra("title")
+//        val desc = intent.getStringExtra("desc")
+//        val channelTtile = intent.getStringExtra("channelName")
+//        val thumbnail = intent.getStringExtra("title")
+//        val title = intent.getStringExtra("title")
+//        val title = intent.getStringExtra("title")
+//        val title = intent.getStringExtra("title")
+
+        videoDao.addVideo(videoID)
+
+        Toast.makeText(this, "Video added to watchlist successfully", Toast.LENGTH_SHORT).show()
     }
 
 }
