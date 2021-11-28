@@ -24,7 +24,7 @@ class videoPlayer : YouTubeBaseActivity() {
 
     private lateinit var youTubePlayerView: YouTubePlayerView
     var fullScreen: Boolean = false
-    private lateinit var videoID: String
+    //private lateinit var videoID: Stringbh nunhjyh88jh
     private lateinit var videoDetails: VideoResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +35,7 @@ class videoPlayer : YouTubeBaseActivity() {
 
         val api_key = "AIzaSyAzSRqUWAASXDkNOeS4mkbWVo7QKHUhOo4"
 
-        videoID = intent.getStringExtra("videoID").toString()
+        //videoID = intent.getStringExtra("videoID").toString()
 
         if (intent.hasExtra("videoDetails")){
             videoDetails = intent.getParcelableExtra<VideoResponse>("videoDetails")!!
@@ -79,6 +79,7 @@ class videoPlayer : YouTubeBaseActivity() {
         VideoDesc.text = videoDetails.snippet?.description
         youtuberName.text = videoDetails.snippet?.channelTitle
         if (intent.getStringExtra("count").isNullOrBlank()){
+            Glide.with(this).load("https://i.imgur.com/JR8ilHf.jpg").placeholder(R.drawable.kotlin).circleCrop().into(youtubeDP)
             SubscriberCount.text = prettyCount(123133)
         }
         else{

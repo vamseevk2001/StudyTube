@@ -29,7 +29,7 @@ class Wishlist_frag : Fragment() {
         val query = videoCollection.orderBy("createdBy", Query.Direction.ASCENDING)
         val recyclerViewOption = FirestoreRecyclerOptions.Builder<VideoResponse>()
             .setQuery(videoCollection, VideoResponse::class.java).build()
-        adapter = WishlistAdapter(recyclerViewOption)
+        adapter = context?.let { WishlistAdapter(it, recyclerViewOption) }!!
         wishhlist_recy.adapter = adapter
         wishhlist_recy.layoutManager = LinearLayoutManager(activity)
     }

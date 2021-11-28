@@ -1,5 +1,7 @@
 package vamsee.application.studytube.Adapter
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,13 +20,14 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.R
+import vamsee.application.studytube.videoPlayer
 import java.text.DecimalFormat
 import kotlin.math.floor
 import kotlin.math.log10
 import kotlin.math.pow
 
 
-class WishlistAdapter (options: FirestoreRecyclerOptions<VideoResponse>) : FirestoreRecyclerAdapter<VideoResponse, WishlistAdapter.RequestViewHolder>(
+class WishlistAdapter (private val context: Context, options: FirestoreRecyclerOptions<VideoResponse>) : FirestoreRecyclerAdapter<VideoResponse, WishlistAdapter.RequestViewHolder>(
         options) {
 
         class RequestViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -36,17 +39,18 @@ class WishlistAdapter (options: FirestoreRecyclerOptions<VideoResponse>) : Fires
             val likes: TextView = itemView.findViewById(R.id.likes)
             val dislikes: TextView = itemView.findViewById(R.id.dislikes)
             val creator: TextView = itemView.findViewById(R.id.youtuberName)
+            val view: View = itemView
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestViewHolder {
-            val viewHolder =  RequestViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.playlist_item, parent, false))
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.playlist_item, parent, false);
+            val viewHolder =  RequestViewHolder(view)
             return viewHolder
         }
 
     override fun onBindViewHolder(holder: RequestViewHolder, position: Int, model: VideoResponse) {
         holder.title.text = model.snippet?.title
         holder.loading.visibility = View.VISIBLE
-        //Glide.with(holder.itemView.context).load(currentItem.snippet?.thumbnails?.get("standard")?.url).listener(object : RequestListener<Drawable>{
         Glide.with(holder.itemView.context).load(model.snippet?.thumbnails?.standard?.url).listener(object :
             RequestListener<Drawable> {
             override fun onLoadFailed(
@@ -93,6 +97,12 @@ class WishlistAdapter (options: FirestoreRecyclerOptions<VideoResponse>) : Fires
             )
         }
         holder.views.text = model.statistics?.viewCount?.toInt()?.let { prettyCount(it) } + " views"
+
+        holder.view.setOnClickListener{
+            val intent_video = Intent(context, videoPlayer::class.java)
+            intent_video.putExtra("videoDetails", model)
+            context.startActivity(intent_video)
+        }
     }
 
     fun prettyCount(number: Number): kotlin.String? {
