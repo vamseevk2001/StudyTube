@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/layout/activity_video_player.xml" value="0.2269021739130435" />
         <entry key="app/src/main/res/layout/activity_wishlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottomnav.xml" value="0.2269021739130435" />
+        <entry key="app/src/main/res/layout/dashboard_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_explore_frag.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/fragment_login_screen.xml" value="0.20833333333333334" />

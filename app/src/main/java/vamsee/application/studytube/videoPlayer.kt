@@ -24,7 +24,6 @@ class videoPlayer : YouTubeBaseActivity() {
 
     private lateinit var youTubePlayerView: YouTubePlayerView
     var fullScreen: Boolean = false
-    //private lateinit var videoID: Stringbh nunhjyh88jh
     private lateinit var videoDetails: VideoResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +33,6 @@ class videoPlayer : YouTubeBaseActivity() {
         youTubePlayerView = findViewById(R.id.YoutubeVideoPlayer)
 
         val api_key = "AIzaSyAzSRqUWAASXDkNOeS4mkbWVo7QKHUhOo4"
-
-        //videoID = intent.getStringExtra("videoID").toString()
 
         if (intent.hasExtra("videoDetails")){
             videoDetails = intent.getParcelableExtra<VideoResponse>("videoDetails")!!
@@ -109,10 +106,5 @@ class videoPlayer : YouTubeBaseActivity() {
         videoDao.addVideo(videoDetails)
         Toast.makeText(this, "Video added to watchlist successfully", Toast.LENGTH_SHORT).show()
     }
-
-}
-
-
-class get {
 
 }

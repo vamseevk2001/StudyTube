@@ -59,19 +59,4 @@ class Wishlist_frag : Fragment() {
         adapter.stopListening()
     }
 
-//    private fun retrieveVids()= CoroutineScope(Dispatchers.IO).launch {
-//        try{
-//            val querySnapshot=videoCollection.get().await()
-//            val sb = StringBuilder()
-//            for(document in querySnapshot.documents){
-//                val vids=document.toObject<Wishlist_frag>()
-//                sb.append("$vids\n")
-//            }
-//            withContext(Dispatchers.Main){
-//            binding.wishtxt.text=sb.toString()
-//            }
-//        }catch (e: Exception){
-//
-//        }
-//    }
 }
