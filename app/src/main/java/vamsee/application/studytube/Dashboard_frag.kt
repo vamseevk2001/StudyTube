@@ -13,14 +13,11 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_dashboard_frag.*
 import vamsee.application.studytube.Adapter.DashboardAdapter
 import vamsee.application.studytube.Models.Video.VideoResponse
 import vamsee.application.studytube.Repository.Repository
 import vamsee.application.studytube.databinding.FragmentDashboardFragBinding
-import java.text.DecimalFormat
-import kotlin.math.floor
-import kotlin.math.log10
-import kotlin.math.pow
 
 class Dashboard_frag : Fragment() {
 
@@ -77,13 +74,12 @@ class Dashboard_frag : Fragment() {
 
     private fun getVideoDetails(videoId: String) {
         viewModel.getVideoDetails(videoId)
-        //SHOW_PROGRESS.visibility = View.VISIBLE
+        SHOW_PROGRESS.visibility = View.VISIBLE
         viewModel.videoResponse.observe(viewLifecycleOwner, Observer {
             if (it.isSuccessful) {
                 videos.add(it.body()?.items?.get(0)!!)
-                //mAdapter.setData(videos)
                 mAdapter.updateItems(videos)
-                //SHOW_PROGRESS.visibility = View.GONE
+                SHOW_PROGRESS.visibility = View.GONE
             } else {
                 Toast.makeText(
                     context,
@@ -95,6 +91,7 @@ class Dashboard_frag : Fragment() {
         })
 
     }
+
 
 
 }
