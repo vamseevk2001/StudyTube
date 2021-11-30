@@ -129,6 +129,34 @@
             android:tint="@color/ghotst_white"
             tools:ignore="UseAppTint" />
 
+        <ImageView
+            android:id="@+id/deletefromwatchlistImgae"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:onClick="deleteVideo"
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/UploadDate"
+            android:tint="@color/red_yt"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/deletefromwatchlist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Delete from \nWatchlist"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/deletefromwatchlistImgae" />
+
         <TextView
             android:id="@+id/addToWatchList"
             android:layout_width="0dp"
@@ -157,17 +185,16 @@
             />
 
 
-
         <ImageView
             android:id="@+id/youtubeDP"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="5dp"
-            android:src="@drawable/th3"
+            android:layout_marginTop="25dp"
             android:scaleType="centerCrop"
+            android:src="@drawable/th3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/addToWatchList" />
+            app:layout_constraintTop_toBottomOf="@+id/VideoDislikes" />
 
         <TextView
             android:id="@+id/youtuberName"

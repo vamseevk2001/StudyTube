@@ -2,6 +2,7 @@ package vamsee.application.studytube
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.*
 import com.bumptech.glide.Glide
@@ -34,7 +35,7 @@ class videoPlayer : YouTubeBaseActivity() {
 
         val api_key = "AIzaSyAzSRqUWAASXDkNOeS4mkbWVo7QKHUhOo4"
 
-        if (intent.hasExtra("videoDetails")){
+        if (intent.hasExtra("videoDetails")) {
             videoDetails = intent.getParcelableExtra<VideoResponse>("videoDetails")!!
             Log.d("VIDEO_PLAYER", videoDetails.toString())
         }
@@ -65,10 +66,22 @@ class videoPlayer : YouTubeBaseActivity() {
         })
 
         setDetails()
+
+        val videoDao = VideoDao()
+        videoDetails.id?.let {
+            videoDao.videoCollection.document(it).get().addOnCompleteListener {
+                if (it.getResult()?.exists() == true){
+                    watchlistImage.visibility = View.GONE
+                    addToWatchList.visibility = View.GONE
+                    deletefromwatchlistImgae.visibility = View.VISIBLE
+                    deletefromwatchlist.visibility = View.VISIBLE
+                }
+            }
+        }
+
     }
 
-    fun setDetails() {
-
+    private fun setDetails() {
         VideoTitle.text = videoDetails.snippet?.title
         VideoViews.text = videoDetails.statistics?.viewCount?.toInt()?.let { prettyCount(it) } + " views"
         VideoLikes.text = videoDetails.statistics?.likeCount?.toInt()?.let { prettyCount(it) }
@@ -105,6 +118,19 @@ class videoPlayer : YouTubeBaseActivity() {
         val videoDao = VideoDao()
         videoDao.addVideo(videoDetails)
         Toast.makeText(this, "Video added to watchlist successfully", Toast.LENGTH_SHORT).show()
+        watchlistImage.visibility = View.GONE
+        addToWatchList.visibility = View.GONE
+        deletefromwatchlistImgae.visibility = View.VISIBLE
+        deletefromwatchlist.visibility = View.VISIBLE
+    }
+
+    fun deleteVideo(view: View) {
+        val videoDao = VideoDao()
+        videoDetails.id?.let { videoDao.deleteVideo(this, it) }
+        watchlistImage.visibility = View.VISIBLE
+        addToWatchList.visibility = View.VISIBLE
+        deletefromwatchlistImgae.visibility = View.GONE
+        deletefromwatchlist.visibility = View.GONE
     }
 
 }
