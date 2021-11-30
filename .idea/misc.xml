@@ -22,6 +22,8 @@
         <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_explore_frag.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/fragment_login_screen.xml" value="0.20833333333333334" />
+        <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_user_videos.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_wishlist_frag.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/playlist_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/skill_item.xml" value="0.25" />

@@ -19,15 +19,13 @@
 
     <TextView
         android:id="@+id/profilename"
-        android:layout_width="216dp"
-        android:layout_height="84dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:minWidth="220dp"
         android:text="Profile Name"
         android:textAlignment="center"
-        android:textSize="34sp"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_min="wrap"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/disppic"
         app:layout_constraintWidth_min="wrap" />
@@ -49,12 +47,10 @@
         android:id="@+id/emailtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="sampleemail@gmail.com"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profilename" />
 
@@ -83,6 +79,7 @@
         android:text="Settings"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/Helptxt"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailtext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
