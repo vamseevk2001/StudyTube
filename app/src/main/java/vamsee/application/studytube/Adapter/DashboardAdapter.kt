@@ -7,29 +7,38 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import vamsee.application.studytube.Models.Video.VideoResponse
+import vamsee.application.studytube.Models.Dashboard
 import vamsee.application.studytube.R
 import java.text.DecimalFormat
 import kotlin.math.floor
 import kotlin.math.log10
 import kotlin.math.pow
 
-class DashboardAdapter: RecyclerView.Adapter<DashboardViewHolder>() {
+class DashboardAdapter(private val listner: DashboardVideoClick): RecyclerView.Adapter<DashboardViewHolder>() {
 
-    val itemList: ArrayList<VideoResponse> = ArrayList()
+    val itemList: ArrayList<Dashboard> = ArrayList()
+    val logos: ArrayList<String> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.dashboard_item, parent, false)
         val viewHolder = DashboardViewHolder(view)
+        view.setOnClickListener{
+            listner.onDashboardVideoClick(itemList[viewHolder.adapterPosition])
+        }
         return viewHolder
     }
 
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
         val currentItem = itemList.get(position)
-        Glide.with(holder.itemView.context).load(currentItem.snippet?.thumbnails?.standard?.url).into(holder.thumbnail)
-        holder.videoTitle.text = currentItem.snippet?.title.toString()
+        Glide.with(holder.itemView.context).load(currentItem.video?.snippet?.thumbnails?.standard?.url).into(holder.thumbnail)
+        holder.videoTitle.text = currentItem.video?.snippet?.title.toString()
+//        if (logos.isEmpty() || position >= logos.size){
+//            Glide.with(holder.itemView.context).load("https://i.imgur.com/JR8ilHf.jpg").circleCrop().into(holder.channelLogo)
+//        }
+//        else
+        Glide.with(holder.itemView.context).load(currentItem.channelLogo).circleCrop().into(holder.channelLogo)
         Glide.with(holder.itemView.context).load("https://i.imgur.com/JR8ilHf.jpg").circleCrop().into(holder.channelLogo)
-        holder.videoInfo.text = currentItem.snippet?.channelTitle +  " . " + currentItem.statistics?.viewCount?.toInt()?.let {
+        holder.videoInfo.text = currentItem.video?.snippet?.channelTitle +  " . " + currentItem.video?.statistics?.viewCount?.toInt()?.let {
             prettyCount(it)
         } + " views "
     }
@@ -38,7 +47,7 @@ class DashboardAdapter: RecyclerView.Adapter<DashboardViewHolder>() {
         return itemList.size
     }
 
-    fun updateItems(array: ArrayList<VideoResponse>){
+    fun updateItems(array: ArrayList<Dashboard>){
         itemList.clear()
         itemList.addAll(array.distinct())
         notifyDataSetChanged()
@@ -57,6 +66,11 @@ class DashboardAdapter: RecyclerView.Adapter<DashboardViewHolder>() {
             DecimalFormat("#,##0").format(numValue)
         }
     }
+
+    fun updateLogo(imgUrl: String) {
+        logos.add(imgUrl)
+    }
+
 }
 
 class DashboardViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -64,4 +78,8 @@ class DashboardViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     val channelLogo = itemView.findViewById<ImageView>(R.id.channel_logo)
     val videoTitle = itemView.findViewById<TextView>(R.id.video_title_dashboard)
     val videoInfo = itemView.findViewById<TextView>(R.id.video_info)
+}
+
+interface DashboardVideoClick{
+    fun onDashboardVideoClick(item: Dashboard)
 }

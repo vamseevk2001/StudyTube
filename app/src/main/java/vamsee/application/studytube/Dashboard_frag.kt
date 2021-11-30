@@ -1,5 +1,6 @@
 package vamsee.application.studytube
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,18 +16,19 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_dashboard_frag.*
 import vamsee.application.studytube.Adapter.DashboardAdapter
-import vamsee.application.studytube.Models.Video.VideoResponse
+import vamsee.application.studytube.Adapter.DashboardVideoClick
+import vamsee.application.studytube.Models.Dashboard
 import vamsee.application.studytube.Repository.Repository
 import vamsee.application.studytube.databinding.FragmentDashboardFragBinding
 
-class Dashboard_frag : Fragment() {
+class Dashboard_frag : Fragment(), DashboardVideoClick {
 
     private var _binding: FragmentDashboardFragBinding? = null
     private val binding get() = _binding!!
     private lateinit var mAuth: FirebaseAuth
     private lateinit var viewModel: MainViewModel
     private lateinit var mAdapter: DashboardAdapter
-    var videos: ArrayList<VideoResponse> = ArrayList()
+    var videos: ArrayList<Dashboard> = ArrayList()
 
 
     override fun onCreateView(
@@ -47,7 +49,7 @@ class Dashboard_frag : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
         Glide.with(this).load(currentUser?.photoUrl).circleCrop().into(binding.dashdp)
-        mAdapter = DashboardAdapter()
+        mAdapter = DashboardAdapter(this)
         binding.dashboardRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.dashboardRecyclerView.adapter = mAdapter
         val repository = Repository()
@@ -75,11 +77,21 @@ class Dashboard_frag : Fragment() {
     private fun getVideoDetails(videoId: String) {
         viewModel.getVideoDetails(videoId)
         SHOW_PROGRESS.visibility = View.VISIBLE
+        Log.d("VIDEODETAILS", viewModel.videoResponse.value.toString())
         viewModel.videoResponse.observe(viewLifecycleOwner, Observer {
             if (it.isSuccessful) {
-                videos.add(it.body()?.items?.get(0)!!)
+
+                //it.body()?.items!![0]?.snippet?.channelId?.let { it1 -> getChannelDetails(it1) }
+//                it.body()?.items!![0]?.snippet?.channelId?.let { it1 ->
+//                    viewModel.getChannelDetails(
+//                        it1
+//                    )
+//                }
+                videos.add(Dashboard(it.body()?.items?.get(0)!!,""))
                 mAdapter.updateItems(videos)
                 SHOW_PROGRESS.visibility = View.GONE
+//
+
             } else {
                 Toast.makeText(
                     context,
@@ -92,6 +104,27 @@ class Dashboard_frag : Fragment() {
 
     }
 
+    private fun getChannelDetails(id: String) {
+       // viewModel.channelResponse.observe(viewLifecycleOwner, Observer {response ->
+//                    if (response.isSuccessful){
+//                        mAdapter.updateLogo(response.body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url.toString())
+//                        //Log.d("DP", response.body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url.toString())
+//
+//                    }
+//                    else{
+//                        Log.d("API", "you are ded!!!")
+//                    }
+//                })
 
+        //val dp = viewModel.channelResponse[0].body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url
+        //Log.d("DP", dp.toString())
+    }
+
+    override fun onDashboardVideoClick(item: Dashboard) {
+        val intent_video = Intent(context, videoPlayer::class.java)
+        intent_video.putExtra("videoDetails", item.video)
+        intent_video.putExtra("channelLogo", item.channelLogo)
+        startActivity(intent_video)
+    }
 
 }

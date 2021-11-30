@@ -58,15 +58,8 @@ class SkillDescription : AppCompatActivity(), videoClick {
 
             val videoIDs = it.body()?.items
             Log.d("VideoIDs", videoIDs.toString())
-            for (video in it.body()?.items!!){
-                if (video.id.videoId != null){
-                    Log.d("VIDEO", video.id.videoId)
-                    getVideoDetails(video.id.videoId)
-                }
-                else{
-                    continue
-                }
-            }
+
+
         })
 
         Log.d("VIDEO", viewModel.id.toString())
