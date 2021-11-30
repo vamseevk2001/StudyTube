@@ -53,13 +53,13 @@ class SkillDescription : AppCompatActivity(), videoClick {
         viewModel.search(name)
         viewModel.myResponse.observe(this, Observer {
             Log.d("Video", it.body()?.items.toString())
-            //Log.d("SIZE", it.body()?.items?.size!!.toString())
-//            IDS = it.body()?.items!!
-
-            val videoIDs = it.body()?.items
-            Log.d("VideoIDs", videoIDs.toString())
-
-
+            for (video in it.body()?.items!!) {
+                if (video.id.videoId != null) {
+                    getVideoDetails(video.id.videoId)
+                } else {
+                    continue
+                }
+            }
         })
 
         Log.d("VIDEO", viewModel.id.toString())
@@ -74,6 +74,7 @@ class SkillDescription : AppCompatActivity(), videoClick {
             if (it.isSuccessful){
                 videos.add(it.body()?.items?.get(0)!!)
                 mAdapter.setData(videos)
+                //Log.d("POKEMON", videos.toString())
                 SHOW_PROGRESS.visibility = View.GONE
             }
             else{
