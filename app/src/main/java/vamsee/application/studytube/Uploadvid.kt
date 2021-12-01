@@ -38,7 +38,7 @@ class Uploadvid : AppCompatActivity() {
     }
 
     // choose a video from phone storage
-    public fun choosevideo() {
+     fun choosevideo() {
         val intent = Intent()
         intent.type = "video/*"
         intent.action = Intent.ACTION_GET_CONTENT

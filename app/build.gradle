@@ -99,8 +99,30 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.1.0')
     implementation 'com.google.firebase:firebase-firestore'
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
     implementation 'com.firebaseui:firebase-ui-firestore:6.4.0'
 
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+//    implementation 'com.google.android.exoplayer:exoplayer:2.4.0'
+//    implementation 'com.google.android.exoplayer:exoplayer-core:r2.4.0'
+
+//    // for adding dash support in our exoplayer.
+//
+//    implementation 'com.google.android.exoplayer:exoplayer-dash:r2.4.0'
+//
+//// for adding hls support in exoplayer.
+//
+//    implementation 'com.google.android.exoplayer:exoplayer-hls:r2.4.0'
+//
+//// for smooth streaming of video in our exoplayer.
+//
+//    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:r2.4.0'
+//
+//// for generating default ui of exoplayer
+//
+//    implementation 'com.google.android.exoplayer:exoplayer-ui:r2.4.0'
+//
+//    implementation 'com.google.android.exoplayer:exoplayer:' + '2.16.1'
 
 }
