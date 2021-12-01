@@ -66,7 +66,7 @@ class Profile_frag : Fragment(), GoogleApiClient.OnConnectionFailedListener {
             startActivity(intent)
         }
         binding.Helptxt.setOnClickListener {
-            val uri = Uri.parse("https://support.google.com/")
+            val uri = Uri.parse("https://support.google.com/youtube/")
             val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
         }

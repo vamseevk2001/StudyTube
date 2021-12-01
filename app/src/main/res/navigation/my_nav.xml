@@ -34,4 +34,14 @@
         android:name="vamsee.application.studytube.Profile_frag"
         android:label="fragment_profile_frag"
         tools:layout="@layout/fragment_profile_frag" />
+    <fragment
+        android:id="@+id/userVideos_frag"
+        android:name="vamsee.application.studytube.userVideos_frag"
+        android:label="fragment_user_videos"
+        tools:layout="@layout/fragment_user_videos" />
+    <activity
+        android:id="@+id/uploadvid"
+        android:name="vamsee.application.studytube.Uploadvid"
+        android:label="activity_uploadvid"
+        tools:layout="@layout/activity_uploadvid" />
 </navigation>

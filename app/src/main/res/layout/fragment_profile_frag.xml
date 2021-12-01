@@ -63,10 +63,11 @@
         android:backgroundTint="#00FFFFFF"
         android:fontFamily="sans-serif"
         android:text="Log Out"
-        android:textColor="#D81B60"
+        android:textColor="#E53935"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:strokeColor="@color/red_yt"
         app:strokeWidth="3dp" />
 

@@ -84,7 +84,7 @@ class SkillDescription : AppCompatActivity(), videoClick {
 
     }
 
-    private fun getChannelDetails(id: String){
+    fun getChannelDetails(id: String){
         viewModel.getChannelDetails(id)
         viewModel.channelResponse.observe(this, Observer {
             if (it.isSuccessful){

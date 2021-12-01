@@ -105,7 +105,7 @@ class Dashboard_frag : Fragment(), DashboardVideoClick {
     }
 
     private fun getChannelDetails(id: String) {
-       // viewModel.channelResponse.observe(viewLifecycleOwner, Observer {response ->
+        // viewModel.channelResponse.observe(viewLifecycleOwner, Observer {response ->
 //                    if (response.isSuccessful){
 //                        mAdapter.updateLogo(response.body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url.toString())
 //                        //Log.d("DP", response.body()?.items?.get(0)?.snippet?.thumbnails?.get("medium")?.url.toString())
