@@ -86,16 +86,16 @@ class Profile_frag : Fragment(), GoogleApiClient.OnConnectionFailedListener {
 
 
         }
-        binding.Settingstxt.setOnClickListener {
-            val uri = Uri.parse("https://myaccount.google.com/")
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
-        }
-        binding.Helptxt.setOnClickListener {
-            val uri = Uri.parse("https://support.google.com/youtube/")
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
-        }
+//        binding.Settingstxt.setOnClickListener {
+//            val uri = Uri.parse("https://myaccount.google.com/")
+//            val intent = Intent(Intent.ACTION_VIEW, uri)
+//            startActivity(intent)
+//        }
+//        binding.Helptxt.setOnClickListener {
+//            val uri = Uri.parse("https://support.google.com/youtube/")
+//            val intent = Intent(Intent.ACTION_VIEW, uri)
+//            startActivity(intent)
+//        }
     }
 
     override fun onConnectionFailed(p0: ConnectionResult) {
