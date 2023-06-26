@@ -132,20 +132,7 @@
                 android:gravity="center"
                 />
 
-            <TextView
-                android:id="@+id/dislikes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:textSize="12sp"
-                android:textColor="#282828"
-                android:drawableTint="#FF7F7F"
-                app:layout_constraintStart_toEndOf="@id/likes"
-                app:layout_constraintBottom_toBottomOf="@id/likes"
-                android:drawableLeft="@drawable/ic_baseline_thumb_down_24"
-                android:text=" 3.5M"
-                android:gravity="center"
-                />
+
 
 
 

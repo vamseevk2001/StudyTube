@@ -68,9 +68,9 @@ class videoPlayer : YouTubeBaseActivity() {
         setDetails()
 
         val videoDao = VideoDao()
-        videoDetails.id?.let {
+        videoDetails.id?.let { it ->
             videoDao.videoCollection.document(it).get().addOnCompleteListener {
-                if (it.getResult()?.exists() == true){
+                if (it.result?.exists() == true){
                     watchlistImage.visibility = View.GONE
                     addToWatchList.visibility = View.GONE
                     deletefromwatchlistImgae.visibility = View.VISIBLE
@@ -85,7 +85,7 @@ class videoPlayer : YouTubeBaseActivity() {
         VideoTitle.text = videoDetails.snippet?.title
         VideoViews.text = videoDetails.statistics?.viewCount?.toInt()?.let { prettyCount(it) } + " views"
         VideoLikes.text = videoDetails.statistics?.likeCount?.toInt()?.let { prettyCount(it) }
-        VideoDislikes.text = videoDetails.statistics?.dislikeCount?.toInt()?.let { prettyCount(it) }
+//        VideoDislikes.text = videoDetails.statistics?.dislikeCount?.toInt()?.let { prettyCount(it) }
         VideoDesc.text = videoDetails.snippet?.description
         youtuberName.text = videoDetails.snippet?.channelTitle
         if (intent.getStringExtra("count").isNullOrBlank()){

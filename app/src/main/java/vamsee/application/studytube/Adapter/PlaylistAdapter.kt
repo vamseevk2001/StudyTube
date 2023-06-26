@@ -78,11 +78,11 @@ class PlaylistAdapter(private val listner: videoClick): RecyclerView.Adapter<Pla
         holder.duration.text = string
 
         holder.likes.text = " " + currentItem.statistics?.likeCount?.let { prettyCount(it.toInt()) }
-        holder.dislikes.text = " " + currentItem.statistics?.dislikeCount?.toInt()?.let {
-            prettyCount(
-                it
-            )
-        }
+//        holder.dislikes.text = " " + currentItem.statistics?.dislikeCount?.toInt()?.let {
+//            prettyCount(
+//                it
+//            )
+//        }
         holder.views.text = currentItem.statistics?.viewCount?.toInt()?.let { prettyCount(it) } + " views"
 
     }
@@ -121,7 +121,6 @@ class PlaylistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     val duration: TextView = itemView.findViewById(R.id.duration)
     val views: TextView = itemView.findViewById(R.id.views)
     val likes: TextView = itemView.findViewById(R.id.likes)
-    val dislikes: TextView = itemView.findViewById(R.id.dislikes)
     val creater: TextView = itemView.findViewById(R.id.youtuberName)
 }
 

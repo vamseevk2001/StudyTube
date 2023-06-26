@@ -91,30 +91,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/likeImage" />
 
-        <ImageView
-            android:id="@+id/dislikeImage"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_baseline_thumb_down_24"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/UploadDate"
-            android:tint="#FF7F7F"
-            tools:ignore="UseAppTint" />
+<!--        <ImageView-->
+<!--            android:id="@+id/dislikeImage"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:src="@drawable/ic_baseline_thumb_down_24"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline3"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/guideline2"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/UploadDate"-->
+<!--            android:tint="#FF7F7F"-->
+<!--            tools:ignore="UseAppTint" />-->
 
-        <TextView
-            android:id="@+id/VideoDislikes"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="5K"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintStart_toEndOf="@+id/VideoLikes"
-            app:layout_constraintTop_toBottomOf="@id/dislikeImage" />
+<!--        <TextView-->
+<!--            android:id="@+id/VideoDislikes"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="5K"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline3"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/VideoLikes"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/dislikeImage" />-->
 
         <ImageView
             android:id="@+id/watchlistImage"
@@ -174,15 +174,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.33" />
+            app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.66"
-            />
+            app:layout_constraintGuide_percent="0.5" />
 
 
         <ImageView
@@ -190,11 +189,11 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/th3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/VideoDislikes" />
+            app:layout_constraintTop_toBottomOf="@+id/addToWatchList" />
 
         <TextView
             android:id="@+id/youtuberName"

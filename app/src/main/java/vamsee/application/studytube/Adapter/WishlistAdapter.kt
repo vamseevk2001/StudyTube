@@ -37,7 +37,6 @@ class WishlistAdapter (private val context: Context, options: FirestoreRecyclerO
             val duration: TextView = itemView.findViewById(R.id.duration)
             val views: TextView = itemView.findViewById(R.id.views)
             val likes: TextView = itemView.findViewById(R.id.likes)
-            val dislikes: TextView = itemView.findViewById(R.id.dislikes)
             val creator: TextView = itemView.findViewById(R.id.youtuberName)
             val view: View = itemView
         }
@@ -91,11 +90,11 @@ class WishlistAdapter (private val context: Context, options: FirestoreRecyclerO
         holder.duration.text = string
 
         holder.likes.text = " " + model.statistics?.likeCount?.let { prettyCount(it.toInt()) }
-        holder.dislikes.text = " " + model.statistics?.dislikeCount?.toInt()?.let {
-            prettyCount(
-                it
-            )
-        }
+//        holder.dislikes.text = " " + model.statistics?.dislikeCount?.toInt()?.let {
+//            prettyCount(
+//                it
+//            )
+//        }
         holder.views.text = model.statistics?.viewCount?.toInt()?.let { prettyCount(it) } + " views"
 
         holder.view.setOnClickListener{

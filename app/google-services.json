@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "774398556377",
+    "firebase_url": "https://studytube-52f99-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "studytube-52f99",
     "storage_bucket": "studytube-52f99.appspot.com"
   },
@@ -19,6 +20,14 @@
           "android_info": {
             "package_name": "vamsee.application.studytube",
             "certificate_hash": "d3dfc9349a9966702bacb84b01d393ba969db083"
+          }
+        },
+        {
+          "client_id": "774398556377-4nv3l0r0kq2nmb6qqj5pbrnvvp5c6ffc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vamsee.application.studytube",
+            "certificate_hash": "1180630436a689c83d3d451732a20fed516eceb7"
           }
         },
         {
