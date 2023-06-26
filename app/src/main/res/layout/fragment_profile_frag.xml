@@ -6,16 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard_frag">
 
-    <TextView
-        android:id="@+id/Helptxt"
-        android:layout_width="104dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="64dp"
-        android:text="@string/help"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/logoutbtn"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <Button-->
+<!--        android:id="@+id/Helptxt"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:text="@string/help"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/Settingstxt" />-->
 
     <TextView
         android:id="@+id/profilename"
@@ -56,31 +56,30 @@
 
     <Button
         android:id="@+id/logoutbtn"
-        android:layout_width="153dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginBottom="116dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
         android:backgroundTint="#00FFFFFF"
+
         android:fontFamily="sans-serif"
         android:text="Log Out"
         android:textColor="#E53935"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:strokeColor="@color/red_yt"
         app:strokeWidth="3dp" />
 
-    <TextView
-        android:id="@+id/Settingstxt"
-        android:layout_width="104dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="4dp"
-        android:text="Settings"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/Helptxt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailtext" />
+<!--    <Button-->
+<!--        android:id="@+id/Settingstxt"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:text="Settings"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:textSize="14sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/emailtext" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

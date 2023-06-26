@@ -189,11 +189,11 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:scaleType="centerCrop"
             android:src="@drawable/th3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addToWatchList" />
+            app:layout_constraintTop_toBottomOf="@+id/likeImage" />
 
         <TextView
             android:id="@+id/youtuberName"

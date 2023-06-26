@@ -9,10 +9,7 @@
         android:id="@+id/explore_frag"
         android:icon="@drawable/ic_twotone_explore"
         android:title="Explore" />
-    <item
-        android:id="@+id/userVideos_frag"
-        android:icon="@drawable/ic_twotone_menu_book"
-        android:title="StudyTube" />
+
     <item
         android:id="@+id/wishlist_frag"
         android:icon="@drawable/ic_twotone_playlist"
