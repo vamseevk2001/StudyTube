@@ -4,17 +4,24 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.*
 import com.bumptech.glide.Glide
 import com.google.android.youtube.player.YouTubeBaseActivity
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayer.OnFullscreenListener
-import com.google.android.youtube.player.YouTubePlayerView
-import kotlinx.android.synthetic.main.activity_video_player.*
+import com.jaedongchicken.ytplayer.YoutubePlayerView
+import com.jaedongchicken.ytplayer.YoutubePlayerView.STATE
+import com.jaedongchicken.ytplayer.YoutubePlayerView.YouTubeListener
+import kotlinx.android.synthetic.main.activity_video_player.SubscriberCount
+import kotlinx.android.synthetic.main.activity_video_player.VideoDesc
+import kotlinx.android.synthetic.main.activity_video_player.VideoLikes
+import kotlinx.android.synthetic.main.activity_video_player.VideoTitle
+import kotlinx.android.synthetic.main.activity_video_player.VideoViews
+import kotlinx.android.synthetic.main.activity_video_player.addToWatchList
+import kotlinx.android.synthetic.main.activity_video_player.deletefromwatchlist
+import kotlinx.android.synthetic.main.activity_video_player.deletefromwatchlistImgae
+import kotlinx.android.synthetic.main.activity_video_player.watchlistImage
+import kotlinx.android.synthetic.main.activity_video_player.youtubeDP
+import kotlinx.android.synthetic.main.activity_video_player.youtuberName
 import vamsee.application.studytube.Daos.VideoDao
 import vamsee.application.studytube.Models.Video.VideoResponse
-import vamsee.application.studytube.videoPlayer
 import java.text.DecimalFormat
 import kotlin.math.floor
 import kotlin.math.log10
@@ -23,7 +30,7 @@ import kotlin.math.pow
 
 class videoPlayer : YouTubeBaseActivity() {
 
-    private lateinit var youTubePlayerView: YouTubePlayerView
+    private lateinit var youTubePlayerView: YoutubePlayerView
     var fullScreen: Boolean = false
     private lateinit var videoDetails: VideoResponse
 
@@ -31,9 +38,7 @@ class videoPlayer : YouTubeBaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_player)
 
-        youTubePlayerView = findViewById(R.id.YoutubeVideoPlayer)
-
-        val api_key = "AIzaSyAzSRqUWAASXDkNOeS4mkbWVo7QKHUhOo4"
+        youTubePlayerView = findViewById(R.id.YoutubeVideoPlayer)  as YoutubePlayerView
 
         if (intent.hasExtra("videoDetails")) {
             videoDetails = intent.getParcelableExtra<VideoResponse>("videoDetails")!!
@@ -44,26 +49,70 @@ class videoPlayer : YouTubeBaseActivity() {
             watchlist()
         }
 
-        youTubePlayerView.initialize(api_key, object : YouTubePlayer.OnInitializedListener {
-            override fun onInitializationSuccess(
-                provider: YouTubePlayer.Provider?,
-                player: YouTubePlayer, wasRestored: Boolean
-            ) {
-                if (!wasRestored) {
-                    player.setOnFullscreenListener(OnFullscreenListener { _isFullScreen ->
-                        fullScreen = _isFullScreen
-                    })
-                    player.loadVideo(videoDetails.id)
-                }
+        youTubePlayerView.setAutoPlayerHeight(this);
+
+        youTubePlayerView.playFullscreen()
+        youTubePlayerView.initialize( videoDetails.id, object : YouTubeListener{
+            override fun onReady() {
+
             }
 
-            override fun onInitializationFailure(
-                p0: YouTubePlayer.Provider?,
-                p1: YouTubeInitializationResult?
-            ) {
-                Toast.makeText(this@videoPlayer, "Video player Failed", Toast.LENGTH_SHORT).show()
+            override fun onStateChange(state: STATE?) {
+                TODO("Not yet implemented")
             }
+
+            override fun onPlaybackQualityChange(arg: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onPlaybackRateChange(arg: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onError(arg: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onApiChange(arg: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCurrentSecond(second: Double) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDuration(duration: Double) {
+                TODO("Not yet implemented")
+            }
+
+            override fun logs(log: String?) {
+                TODO("Not yet implemented")
+            }
+
         })
+
+
+//        youTubePlayerView.initialize(api_key, object : YouTubePlayer.OnInitializedListener {
+//            override fun onInitializationSuccess(
+//                provider: YouTubePlayer.Provider?,
+//                player: YouTubePlayer, wasRestored: Boolean
+//            ) {
+//
+//                if (!wasRestored) {
+////                    player.setOnFullscreenListener(OnFullscreenListener { _isFullScreen ->
+////                        fullScreen = _isFullScreen
+////                    })
+//                    player.loadVideo(videoDetails.id)
+//                }
+//            }
+//
+//            override fun onInitializationFailure(
+//                p0: YouTubePlayer.Provider?,
+//                p1: YouTubeInitializationResult?
+//            ) {
+//                Toast.makeText(this@videoPlayer, "Video player Failed", Toast.LENGTH_SHORT).show()
+//            }
+//        })
 
         setDetails()
 
